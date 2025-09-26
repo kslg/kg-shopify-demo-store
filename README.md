@@ -993,8 +993,6 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 
 # Shopify Flow - Automated Low Inventory Email Alert
 
-# Shopify Flow: Automated Low Inventory Email Alerts
-
 A low-code solution for automatically notifying staff when product inventory drops below a specified threshold using Shopify Flow.
 
 ## Overview
