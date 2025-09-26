@@ -19,7 +19,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 - [Special Features](#features)
     * [Homepage Video Banner](#homepage-video-banner)
     * [Metafield Custom Product Attribute](#metafield-custom-product-attribute)
-    * [Bootstrap Theme](#bootstrap-theme)
+    * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
         + [Bootstrap Toasts - Alert Messages](#)
         + [Bootstrap Carousel - USP (Unique Selling Points)](#)
     * [Guest Checkout](#guest-checkout)
@@ -333,14 +333,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 3. Fill in values for applicable products
 4. **Import** the updated CSV
 
-### Shopify Flow (Plus only)
-
-Create automation rules to populate metafields based on:
-- Product tags
-- Vendor information  
-- Collection membership
-- Other product attributes
-
 ## Troubleshooting
 
 ### Common Issues
@@ -352,32 +344,12 @@ Create automation rules to populate metafields based on:
 | **Content not displaying** | Ensure metafield has content and dynamic source is properly connected |
 | **Styling issues** | Use theme customizer styling options rather than custom CSS |
 
-### Verification Steps
+### Testing Verification Steps
 
 1. **Check metafield content** - Visit product admin page and verify field is populated
 2. **Test dynamic source** - In customizer, verify the connection shows your metafield name
 3. **Preview thoroughly** - Test on different products, including those without the metafield
 4. **Mobile testing** - Ensure display works properly on mobile devices
-
-## Advanced Usage
-
-### Multiple Metafields
-
-You can create multiple metafields for different attributes:
-- `custom.sustainable_material` - "Made from organic cotton"
-- `custom.care_instructions` - "Machine wash cold, tumble dry low"  
-- `custom.sizing_notes` - "Runs small, consider sizing up"
-
-### Conditional Display
-
-Modern themes automatically handle conditional display - metafields only show when they contain content.
-
-### Rich Content
-
-For more complex content, consider:
-- **Multi-line text** for longer descriptions
-- **Rich text** for formatted content with links
-- **URL fields** for linking to certificates or additional info
 
 ## Maintenance
 
@@ -394,14 +366,320 @@ For more complex content, consider:
 - Dynamic source connections may need to be re-established
 - Test display after theme updates
 
-## Support Resources
+[Back to contents](#contents)
 
-- **Shopify Help Center** - Search for "metafields" 
-- **Theme Documentation** - Check your theme's specific documentation
-- **Shopify Community** - Developer and merchant forums
-- **Theme Support** - Contact your theme developer if dynamic sources aren't available
+# Cart Page Dynamic Free Shipping Message
 
----
+## Overview
+This guide will help you create a dynamic free shipping message on your Shopify cart page that updates based on the cart total, with full customization options through the theme editor and metafields integration.
 
-**Last Updated:** September 2025  
-**Compatible With:** Modern Shopify themes with dynamic source support
+## Step 1: Create Metaobjects for Configuration
+
+### 1.1 Set up Free Shipping Configuration Metaobject
+1. Go to **Settings > Metafields** in your Shopify admin
+2. Click **Metaobjects** tab
+3. Click **Add definition**
+4. Configure the metaobject:
+   - **Name**: `Free Shipping Config`
+   - **Type**: `free_shipping_config`
+   - **Access**: `Storefront API`
+
+### 1.2 Add Fields to the Metaobject
+Add these fields to your metaobject:
+
+| Field Name | Type | Key | Description |
+|------------|------|-----|-------------|
+| Minimum Amount | Money | `minimum_amount` | Free shipping threshold |
+| Eligible Message | Single line text | `eligible_message` | Message when customer qualifies |
+| Progress Message | Single line text | `progress_message` | Message showing remaining amount |
+| Countries | Single line text | `countries` | Eligible countries (comma-separated) |
+
+**Note:** The full field keys will be:
+- `free_shipping_config.minimum_amount`
+- `free_shipping_config.eligible_message` 
+- `free_shipping_config.progress_message`
+- `free_shipping_config.countries`
+
+### 1.3 Create Metaobject Entry
+1. After saving the definition, click **Add entry**
+2. Fill in the values:
+   - **Minimum Amount**: £50.00
+   - **Eligible Message**: "🎉 You qualify for FREE shipping!"
+   - **Progress Message**: "Add £{amount} more for FREE shipping!"
+   - **Countries**: "GB,UK"
+
+## Step 2: Create the Liquid Section
+
+### 2.1 Create the Section File
+Create a new file: `sections/free-shipping-message.liquid`
+
+## Step 3: Create the Shipping Icon
+
+### 3.1 Create Icon Snippet
+Create a new file: `snippets/icon-shipping.liquid`
+
+## Step 4: Add to Cart Template
+
+### 4.1 Modify Cart Template
+Edit your `templates/cart.liquid` file and add this line where you want the message to appear (typically near the cart total).
+
+### 4.2 Alternative: Add to Cart Drawer
+If using a cart drawer, add the section include to your cart drawer template or snippet.
+
+## Step 5: Set Up Global Metafields (Optional Enhancement)
+
+### 5.1 Create Global Shop Metafield
+1. Go to **Settings > Metafields**
+2. Click **Shop** tab
+3. Add definition:
+   - **Name**: `Free Shipping Enabled`
+   - **Namespace and key**: `custom.free_shipping_enabled`
+   - **Type**: `True or false`
+   - **Description**: `Enable/disable free shipping message globally`
+
+### 5.2 Update Section to Use Global Setting
+Add this liquid at the top of your section:
+
+```liquid
+{%- unless shop.metafields.custom.free_shipping_enabled -%}
+  {%- comment -%} Don't show if globally disabled {%- endcomment -%}
+  <style>.free-shipping-message { display: none !important; }</style>
+{%- endunless -%}
+```
+## Step 6: Testing and Configuration
+
+### 6.1 Theme Customizer Setup
+1. Go to **Online Store > Themes**
+2. Click **Customize** on your Horizon theme
+3. Navigate to your cart page
+4. You should see the "Free Shipping Message" section available to configure
+
+### 6.2 Test Scenarios
+Test these scenarios:
+- Cart total below threshold (should show progress message)
+- Cart total above threshold (should show eligible message)
+- Empty cart (should show full amount needed)
+- Progress bar animation when adding/removing items
+
+### 6.3 Metaobject Configuration
+1. Test with metaobject values
+2. Test fallback to section settings
+3. Update threshold amounts and messages
+4. Test different currencies if applicable
+
+## Critical Issues Encountered
+
+### Issue #1: Liquid Syntax Parsing Errors
+
+**Problem:**
+```
+FileSaveError: Liquid syntax error (line 42): Variable '{{ progress_message | replace: '{amount}' was not properly terminated with regexp: /\}\}/
+```
+
+**Root Cause:**
+The Liquid parser was attempting to process JavaScript template strings that contained Liquid-like syntax within `<script>` tags. When JavaScript code contained `{{ progress_message }}`, the Liquid engine tried to parse it as Liquid code rather than JavaScript, causing syntax conflicts.
+
+**Initial Failed Attempts:**
+1. Escaping the curly braces - didn't resolve parsing conflicts
+2. Moving variables to data attributes - helped but didn't fully resolve the JavaScript issue
+3. Using different quote styles - had no effect on Liquid parsing
+
+**Final Solution:**
+Complete separation of Liquid and JavaScript concerns:
+```liquid
+<!-- Liquid handles initial rendering -->
+{%- assign remaining_formatted = remaining | money -%}
+{%- assign message_parts = progress_message | split: '{amount}' -%}
+<p class="free-shipping-message__text">
+  {{ message_parts[0] }}{{ remaining_formatted }}{{ message_parts[1] }}
+</p>
+
+<!-- JavaScript handles dynamic updates -->
+<script>
+// No Liquid syntax within JavaScript blocks
+var formattedRemaining = '£' + (remaining / 100).toFixed(2);
+</script>
+```
+
+### Issue #2: Section-in-Section Architecture Limitation
+
+**Problem:**
+```
+Liquid error (sections/main-cart line 29): Cannot render sections inside sections
+```
+
+**Root Cause:**
+Shopify's architecture prevents rendering sections within other sections. The `main-cart.liquid` template is already a section, so using `{%- section 'free-shipping-message' -%}` inside it violates this constraint.
+
+**Failed Approaches:**
+1. Direct section rendering within cart section
+2. Attempting to bypass with different syntax variations
+3. Trying to render as partial instead of section
+
+**Solution Path:**
+Implemented a hybrid approach:
+```liquid
+<!-- Convert to snippet for direct integration -->
+{%- render 'free-shipping-message' -%}
+
+<!-- Then later converted to standalone section -->
+<!-- Added through theme customizer interface -->
+```
+
+### Issue #3: Metaobject Field Access Confusion
+
+**Problem:**
+Initial code used incorrect field access patterns:
+```liquid
+<!-- Incorrect -->
+assign threshold = free_shipping_config.minimum_amount.value | times: 100
+
+<!-- User's actual field structure -->
+free_shipping_config.minimum_amount
+free_shipping_config.eligible_message
+free_shipping_config.progress_message
+free_shipping_config.countries
+```
+
+**Root Cause:**
+Misunderstanding of how metaobject fields are accessed in Liquid. The user's metaobject definition used direct field access without the `.value` suffix.
+
+**Solution:**
+Corrected field access pattern:
+```liquid
+<!-- Correct approach -->
+assign threshold = free_shipping_config.minimum_amount | times: 100
+assign eligible_message = free_shipping_config.eligible_message
+assign progress_message = free_shipping_config.progress_message
+```
+
+### Issue #4: Schema Validation Errors
+
+**Problem 1: Name Length Limit**
+```
+FileSaveError: Invalid schema: name is too long (max 25 characters)
+```
+
+**Solution:**
+```json
+// Before: "Cart Free Shipping Message" (26 characters)
+// After: "Cart Free Shipping" (18 characters)
+"name": "Cart Free Shipping"
+```
+
+**Problem 2: Block Type Conflicts**
+```
+FileSaveError: Theme blocks and section-defined blocks can not be used together
+```
+
+**Root Cause:**
+Attempting to mix Shopify's built-in block types (`@theme`, `@app`) with custom section-defined blocks in the same schema.
+
+**Solution:**
+Abandoned the block-based approach within existing cart section and used standalone section architecture instead.
+
+### Issue #5: Dynamic Updates Not Working in Theme Customizer
+
+**Problem:**
+When adding the section through the theme customizer, JavaScript cart updates weren't being detected properly, causing the message to not update when cart contents changed.
+
+**Root Cause:**
+Different themes use different cart update mechanisms. The Horizon theme's cart drawer system wasn't triggering the standard cart update events our JavaScript was listening for.
+
+**Solution:**
+Implemented multiple event listeners and fetch interception:
+```javascript
+// Multiple event detection strategies
+document.addEventListener('cart:updated', updateHandler);
+document.addEventListener('cart:refresh', updateHandler);
+
+// Fetch API interception for broader coverage
+var originalFetch = window.fetch;
+window.fetch = function() {
+  return originalFetch.apply(this, arguments).then(function(response) {
+    if (arguments[0] && arguments[0].includes('/cart/')) {
+      setTimeout(updateHandler, 200);
+    }
+    return response;
+  });
+};
+```
+
+## 🔧 Solution Evolution Timeline
+
+### Phase 1: Initial Section Creation
+- **Challenge:** Complex Liquid logic with JavaScript integration
+- **Issue:** Liquid parsing conflicts in script tags
+- **Resolution:** Separated Liquid from JavaScript concerns
+
+### Phase 2: Template Integration
+- **Challenge:** Section-in-section limitation
+- **Issue:** `Cannot render sections inside sections` error
+- **Resolution:** Converted to snippet approach
+
+### Phase 3: Functional Implementation  
+- **Challenge:** Cart update detection
+- **Issue:** Static display, no dynamic updates
+- **Resolution:** Multi-layered event detection system
+
+### Phase 4: Customization Requirements
+- **Challenge:** Theme editor integration while maintaining functionality
+- **Issue:** Lost dynamic functionality when using theme customizer
+- **Resolution:** Standalone section with comprehensive schema
+
+## 📋 Debugging Strategies Used
+
+### 1. Liquid Syntax Debugging
+```liquid
+<!-- Debug output to identify parsing issues -->
+{{ progress_message | json }}
+{{ remaining | money | json }}
+```
+
+### 2. JavaScript Console Debugging
+```javascript
+console.log('Cart total:', cartTotal);
+console.log('Threshold:', threshold);
+console.log('Message element:', messageElement);
+```
+
+### 3. Schema Validation Testing
+- Character counting for name limits
+- JSON syntax validation
+- Block type compatibility checking
+
+### 4. Event Listener Testing
+```javascript
+// Test multiple event sources
+document.addEventListener('cart:updated', function() {
+  console.log('cart:updated fired');
+});
+
+document.addEventListener('cart:refresh', function() {
+  console.log('cart:refresh fired');
+});
+```
+
+## 🎯 Key Lessons Learned
+
+### 1. Shopify Architecture Constraints
+- Sections cannot be nested within sections
+- Theme blocks and custom blocks cannot coexist
+- Metaobject field access varies by implementation
+
+### 2. Liquid-JavaScript Separation
+- Keep Liquid processing separate from JavaScript execution
+- Use data attributes for Liquid-to-JavaScript data transfer
+- Avoid Liquid syntax within script blocks
+
+### 3. Event Detection Strategies
+- Different themes use different cart update mechanisms
+- Multiple event listeners provide better coverage
+- Fetch API interception catches programmatic cart changes
+
+### 4. Schema Design Considerations
+- Name length limits (25 characters)
+- Block type compatibility requirements
+- Setting organization for user experience
+
+[Back to contents](#contents)
