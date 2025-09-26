@@ -17,7 +17,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Metafield Custom Product Attribute](#metafield-custom-product-attribute)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
-    * [Product Reviews](#product-reviews)
+    * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
     * [Shipping Logic](#shipping-logic)
     * [Sort By Filter](#sort-by-filter)
     * [404 Page](#404-page)
@@ -780,5 +780,12 @@ This is a simple **Node.js + Express** server for capturing Shopify webhooks in 
 **Cart Webhook** 
 
 
-
 [Back to contents](#contents)
+
+# Collection page with a Liquid section
+
+I created a seasonal collection page for a summer collection. This seasonal collection template includes:
+
+| The collection title | The collection description |
+|A call-to-action section for customers to pre-order now|A product grid with all the products in the collection|
+
