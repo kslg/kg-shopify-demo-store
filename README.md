@@ -16,9 +16,9 @@ I have demostared how to apply these features using platform configuration as we
 
 # **Contents**
 - [User Experience](#user-experience)
-- [Features](#features)
+- [Special Features](#features)
     * [Homepage Video Banner](#homepage-video-banner)
-    * [Order Confirmation Email](#order-confirmation-email)
+    * [Metafield Custom Product Attribute](#metafield-custom-product-attribute)
     * [Bootstrap Theme](#bootstrap-theme)
         + [Bootstrap Toasts - Alert Messages](#)
         + [Bootstrap Carousel - USP (Unique Selling Points)](#)
@@ -225,3 +225,183 @@ style="max-width: {{ section.settings.logo_width }}px;"
 - Mobile-first responsive design
 - Smooth transitions and hover effects
 
+[Back to contents](#contents)
+
+
+# Metafield Custom Product Attribute
+
+## Overview
+
+This documentation covers how to add custom product attributes using Shopify metafields and dynamic sources through the theme customizer - **no code editing required**.
+
+## What Are Metafields?
+
+Metafields are Shopify's way of storing custom data that doesn't fit into standard product fields. They allow you to add additional information like sustainability details, care instructions, sizing guides, or any other custom attributes to your products.
+
+## Implementation Guide
+
+### Prerequisites
+
+- Shopify store with modern theme (Horizon, Dawn, etc.)
+- Admin access to Shopify store
+- Products to add custom attributes to
+
+### Step 1: Create Metafield Definition
+
+1. Navigate to **Shopify Admin** → **Settings** → **Metafields**
+2. Click **"Add definition"**
+3. Configure your metafield:
+
+| Field | Value | Notes |
+|-------|-------|-------|
+| **Name** | `Sustainable Material` | Human-readable label shown in admin |
+| **Namespace and key** | `custom.sustainable_material` | Technical identifier for the field |
+| **Description** | `Information about sustainable materials used` | Optional helper text |
+| **Type** | `Single line text` | Data type - see options below |
+| **Content type** | `Products` | Where this metafield can be used |
+
+4. Click **"Save"**
+
+#### Available Data Types
+
+- **Single line text** - Short text (e.g., "Made from sustainable cotton")
+- **Multi-line text** - Longer text with line breaks
+- **Rich text** - Formatted text with bold, italic, links
+- **Number** - Numeric values
+- **True/False** - Yes/no checkbox
+- **Date** - Calendar dates
+- **URL** - Web addresses
+- **JSON** - Structured data
+
+### Step 2: Add Content to Products
+
+1. Go to **Products** in Shopify admin
+2. **Edit** the product you want to add the attribute to
+3. Scroll to the **"Metafields"** section (usually near the bottom)
+4. Find your **"Sustainable Material"** field
+5. Enter your content (e.g., `Made from sustainable cotton.`)
+6. **Save** the product
+
+> **Tip:** You can bulk-edit metafields using CSV export/import for multiple products.
+
+### Step 3: Display via Theme Customizer
+
+1. Navigate to **Online Store** → **Themes** → **Customize**
+2. Go to a **product page** in the preview
+3. Add a new section or block:
+   - Look for **"Custom content"**, **"Rich text"**, or **"Text"** blocks
+   - Or use existing **"Product information"** sections
+4. In the block settings, find text fields that support dynamic sources
+5. Click the **"Connect dynamic source"** icon (🔗 chain link or database symbol)
+6. Select **"Products"** → **"Sustainable Material"** (your metafield name)
+7. **Save** your changes
+
+### Step 4: Style and Position
+
+- Use the **theme customizer** to position your block appropriately
+- Adjust **text styling** (font size, color, alignment) through customizer settings
+- **Preview** your changes across different devices
+- **Publish** when satisfied
+
+## Best Practices
+
+### Naming Conventions
+
+- **Names**: Use clear, descriptive names (`Sustainable Material`, `Care Instructions`)
+- **Keys**: Use lowercase with underscores (`sustainable_material`, `care_instructions`)
+- **Namespaces**: Stick with `custom` for simplicity, or create logical groups (`eco`, `sizing`)
+
+### Content Guidelines
+
+- Keep text concise and customer-focused
+- Use consistent formatting across products
+- Only populate metafields for relevant products
+- Consider multiple languages if you have international customers
+
+### Organization
+
+- Group related metafields with consistent naming
+- Use descriptions to document the purpose of each metafield
+- Consider creating a content style guide for team members
+
+## Bulk Management
+
+### CSV Method
+
+1. **Export products** via CSV from Products → Export
+2. Add column: `Metafield: custom.sustainable_material [single_line_text_field]`
+3. Fill in values for applicable products
+4. **Import** the updated CSV
+
+### Shopify Flow (Plus only)
+
+Create automation rules to populate metafields based on:
+- Product tags
+- Vendor information  
+- Collection membership
+- Other product attributes
+
+## Troubleshooting
+
+### Common Issues
+
+| Problem | Solution |
+|---------|----------|
+| **Metafield not appearing in admin** | Check metafield definition is saved and content type is "Products" |
+| **Dynamic source option missing** | Verify your theme supports dynamic sources (most modern themes do) |
+| **Content not displaying** | Ensure metafield has content and dynamic source is properly connected |
+| **Styling issues** | Use theme customizer styling options rather than custom CSS |
+
+### Verification Steps
+
+1. **Check metafield content** - Visit product admin page and verify field is populated
+2. **Test dynamic source** - In customizer, verify the connection shows your metafield name
+3. **Preview thoroughly** - Test on different products, including those without the metafield
+4. **Mobile testing** - Ensure display works properly on mobile devices
+
+## Advanced Usage
+
+### Multiple Metafields
+
+You can create multiple metafields for different attributes:
+- `custom.sustainable_material` - "Made from organic cotton"
+- `custom.care_instructions` - "Machine wash cold, tumble dry low"  
+- `custom.sizing_notes` - "Runs small, consider sizing up"
+
+### Conditional Display
+
+Modern themes automatically handle conditional display - metafields only show when they contain content.
+
+### Rich Content
+
+For more complex content, consider:
+- **Multi-line text** for longer descriptions
+- **Rich text** for formatted content with links
+- **URL fields** for linking to certificates or additional info
+
+## Maintenance
+
+### Regular Tasks
+
+- **Review content** periodically for accuracy and consistency
+- **Update styling** through theme customizer as needed
+- **Monitor performance** - too many metafields can slow admin interface
+- **Document changes** for team members
+
+### When Updating Themes
+
+- Metafield definitions persist through theme changes
+- Dynamic source connections may need to be re-established
+- Test display after theme updates
+
+## Support Resources
+
+- **Shopify Help Center** - Search for "metafields" 
+- **Theme Documentation** - Check your theme's specific documentation
+- **Shopify Community** - Developer and merchant forums
+- **Theme Support** - Contact your theme developer if dynamic sources aren't available
+
+---
+
+**Last Updated:** September 2025  
+**Compatible With:** Modern Shopify themes with dynamic source support
