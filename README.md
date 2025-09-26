@@ -16,9 +16,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Homepage Video Banner](#homepage-video-banner)
     * [Metafield Custom Product Attribute](#metafield-custom-product-attribute)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
-        + [Bootstrap Toasts - Alert Messages](#)
-        + [Bootstrap Carousel - USP (Unique Selling Points)](#)
-    * [Guest Checkout](#guest-checkout)
+    * [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
     * [Product Reviews](#product-reviews)
     * [Shipping Logic](#shipping-logic)
     * [Sort By Filter](#sort-by-filter)
@@ -679,3 +677,25 @@ document.addEventListener('cart:refresh', function() {
 - Setting organization for user experience
 
 [Back to contents](#contents)
+
+# Shopify Webhook Listener  
+
+This is a simple **Node.js + Express** server for capturing Shopify webhooks in real-time. I've demonstrated how to set up webhook listeners for **Order Creation** and **Cart Creation** events, with **ngrok** used to expose the local server and **Chalk** for clean, color-coded logging in the terminal.  
+
+---
+
+## 🚀 Features  
+- Webhook listener for **orders/create**  
+- Webhook listener for **carts/create**  
+- Browser check endpoints to confirm the server is live  
+- Color-coded logs with [Chalk](https://www.npmjs.com/package/chalk)  
+- Ngrok tunneling for connecting local server to Shopify  
+
+---
+
+## 🛠️ Setup  
+
+1. **Clone the repository**  
+   ```bash
+   git clone <your-repo-url>
+   cd <project-folder>
