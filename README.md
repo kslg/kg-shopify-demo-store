@@ -807,6 +807,11 @@ I created a seasonal collection page for a summer collection. This seasonal coll
 - Scroll through the menu bar. Under 📁 Sections, select + Add a new section. Leave the radio button on ‘liquid’ and make the file name call-to-action.liquid
 
 ## Step 4 Add the Liquid Code
+The call-to-action file should includes:
+- A section title. The title is a field that the merchant can input in the theme editor.
+- The collection title for that page. For example, If the template is used for the winter collection, it could similarly display “The winter collection is out now!”.
+- A text area for Lily to input additional information on pre-orders for her seasonal collections.
+
 ```bash
 <div>
 	<h2>{{ section.settings.pre-order-title }}</h2>
@@ -839,7 +844,148 @@ I created a seasonal collection page for a summer collection. This seasonal coll
 ]
 }
 {% endschema %}
+```
 
+## Step 5 Create a new section in the web code editor
+- In the Templates folder, you should see a new JSON file called collection.seasonal-collection.json file.
+- Add the call-to-action section to the JSON template.
+``` bash
 
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "call-to-action": {
+      "type": "call-to-action",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "call-to-action",
+    "product-grid"
+  ]
+}
+```
 
+## Step 6 Use the new template in your collection
+- Head back to the Admin page and Select the summer collection to make edits.
+- Under Theme template, select seasonal-collection as your new collection template.
 
+## Step 7 Surface all collections in the main menu
+
+ -In the Admin page, navigate to Sales channels > Online Store > Navigation.
+- Click on the Main menu under Menus.
+- Click Edit alongside Featured Collections and select All Collections.
+- Click Apply changes then Save menu. Next time you preview your theme, you should see all collections.
+
+## Additional enhancements
+
+I wanted add controls over the text alignment and font weight from the Theme Editor, with flexibility to expand styling options without editing CSS every time.
+
+## Step 1
+- I added settings to the sections/call-to-action.liquid for alignment and font weight.
+```bash
+{% schema %}
+{
+  "name": "Custom Block",
+  "settings": [
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "bold", "label": "Bold" },
+        { "value": "lighter", "label": "Light" }
+      ],
+      "default": "normal"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Block",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text content" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Block"
+    }
+  ]
+}
+{% endschema %}
+```
+
+## Step 2
+- Output inline styles dynamically. Inside the block/section markup, I used the settings:
+```bash
+  <div class="custom-block"
+     style="text-align: {{ section.settings.text_alignment }};
+            font-weight: {{ section.settings.font_weight }};">
+  {{ block.settings.text }}
+  </div>
+```
+
+## Step 3
+- I Add classes instead of inline styles which are cleaner & easier to manage with Tailwind/CSS):
+```bash
+<div class="custom-block
+            align-{{ section.settings.text_alignment }}
+            weight-{{ section.settings.font_weight }}">
+  {{ block.settings.text }}
+</div>
+```
+
+## Step 4
+- Then I updated the base.CSS file:
+```bash
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+
+.weight-normal { font-weight: normal; }
+.weight-bold { font-weight: bold; }
+.weight-lighter { font-weight: lighter; }
+```
