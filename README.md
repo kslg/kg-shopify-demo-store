@@ -11,7 +11,7 @@ By Krishan G
 
 
 This is the documentation for my demo Shopify store – an urban clothing brand using the Horizon theme and enhanced with custom features to improve user experience and merchant KPIs.
-I have demostared how to apply these features using platform configuration as well as code development. I hope you enjoy it.
+I have demonstrated how to apply these features using "out-the-box" configuration as well as code development. I hope you enjoy it.
 
 
 # **Contents**
