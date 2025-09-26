@@ -18,7 +18,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
-    * [Shipping Logic](#shipping-logic)
+    * [Shopify Flow - Automated Low Inventory Email Alert](#shopify-flow---automated-low-inventory-email-alert)
     * [Sort By Filter](#sort-by-filter)
     * [404 Page](#404-page)
 - [SEO Optimisation](#seo-optimisation)
@@ -991,9 +991,142 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 ```
 [Back to contents](#contents)
 
+# Shopify Flow - Automated Low Inventory Email Alert
+
+# Shopify Flow: Automated Low Inventory Email Alerts
+
+A low-code solution for automatically notifying staff when product inventory drops below a specified threshold using Shopify Flow.
+
+## Overview
+
+This implementation creates an automated workflow that monitors product inventory levels and sends email notifications to staff members when stock falls below a defined threshold. Perfect for maintaining optimal inventory levels without manual monitoring.
+
+## Prerequisites
+
+- Shopify store with admin access
+- Shopify Flow app installed
+- Staff email addresses for notifications
+- Defined inventory threshold (e.g., 5, 10, or 15 units)
+
+## Implementation Steps
+
+### 1. Access Shopify Flow
+- Navigate to Shopify Admin → Apps → Shopify Flow
+- Click "Create workflow"
+
+### 2. Configure Trigger
+- Select **"Product inventory changed"** as the trigger
+- This monitors inventory levels across all products in real-time
+
+### 3. Set Condition
+- Add condition: `Product inventory quantity` `is less than or equal to` `[threshold number]`
+- Replace `[threshold number]` with your desired minimum stock level
+- Optional: Add additional conditions for specific products, variants, or locations
+
+### 4. Configure Email Action
+- Choose **"Send email"** as the action
+- Configure email settings:
+  - **To**: Staff email addresses (comma-separated for multiple recipients)
+  - **Subject**: `Low Inventory Alert - {{product.title}}`
+  - **Body**: Use the template below
+
+### 5. Email Template
+
+```
+Subject: Low Inventory Alert - {{product.title}}
+
+Hi Team,
+
+The inventory for {{product.title}} has dropped to {{product.totalInventory}} units.
+
+Product Details: <br>
+- SKU: {{product.handle}} <br> 
+- Current Stock: {{product.totalInventory}} <br>
+- Product ID: {{product.id}} <br>
+- Storefront Link: https://krish-demostore.myshopify.com/products/{{product.handle}} <br>
+
+Please restock when convenient.
+
+From UE Team
+```
+
+### 6. Test and Activate
+- Use Shopify Flow's built-in test functionality
+- Verify email delivery and content
+- Activate workflow once testing is complete
+
+## Available Variables
+
+### Working Variables for Products Without Variants
+- `{{product.title}}` - Product name
+- `{{product.totalInventory}}` - Current stock level
+- `{{product.id}}` - Product ID (GraphQL format)
+- `{{product.handle}}` - Product URL handle
+
+## Known Limitations and Workarounds
+
+### 1. GraphQL ID Format Issue
+**Problem**: `{{product.id}}` returns GraphQL format (`gid://shopify/Product/123456`) instead of numeric ID.
+
+**Impact**: Cannot create clean admin product URLs like `https://admin.shopify.com/store/name/products/123456`
+
+**Workaround**: Use storefront URLs instead: `https://your-store.myshopify.com/products/{{product.handle}}`
+
+### 2. SKU Limitations
+**Problem**: SKU variables are not accessible for products without variants.
+
+**Workaround**: Use Product ID and Handle for product identification instead.
+
+### 3. Admin URL Generation
+**Problem**: Cannot generate direct admin product links due to GraphQL ID format.
+
+**Workaround**: Include Product ID in email for manual admin search, or use storefront links.
+
+## Best Practices
+
+### Multiple Alert Levels
+Consider creating separate workflows for different urgency levels:
+- Critical: ≤ 2 units (immediate action required)
+- Low: ≤ 10 units (reorder soon)
+- Warning: ≤ 25 units (plan reorder)
+
+### Business Hours Filtering
+Add time-based conditions to avoid after-hours notifications:
+- Only send emails during business hours
+- Different alert thresholds for weekends
+
+### Product-Specific Thresholds
+Create targeted workflows for:
+- High-value products (lower thresholds)
+- Seasonal items (adjusted thresholds)
+- Fast-moving inventory (higher thresholds)
+
+## Troubleshooting
+
+### Common Issues
+1. **Variable errors**: Ensure all variables are from the approved list above
+2. **No emails received**: Check spam folders and verify email addresses
+3. **Too many notifications**: Consider implementing delay conditions or higher thresholds
+4. **Missing products**: Verify inventory tracking is enabled for products
+
+### Testing
+- Used Shopify Flow's test feature before activation
+- Test with a single email address initially
+
+
+## Technical Notes
+
+- **Theme Independence**: This workflow functions regardless of store theme (tested with Horizon theme)
+- **Real-time Monitoring**: Triggers immediately when inventory changes
+- **Scalability**: Handles multiple products and locations
+- **No Coding Required**: Pure low-code/no-code solution
+
+[Back to contents](#contents)
 
 # Borrowed Resources
 
 - https://shopify.dev/docs/api/admin-graphql
 - https://www.shopifyacademy.com/path/shopify-development-fundamentals
 - https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory
+
+[Back to contents](#contents)
