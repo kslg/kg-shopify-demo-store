@@ -74,7 +74,7 @@ I've used the Horizon themes which provides maximum flexibility, making editing 
 
 > A custom Shopify Liquid section that creates a fullwidth video banner with autoplay functionality and customizable overlay content.
 
-## ✨ Features
+### ✨ Features
 
 - 🎬 **Fullwidth video background** with autoplay, muted, and looped playback
 - 🎨 **Customizable overlay** with adjustable opacity
@@ -84,7 +84,7 @@ I've used the Horizon themes which provides maximum flexibility, making editing 
 - 📱 **Fully responsive** design optimized for mobile devices
 - ✨ **Professional animations** with hover effects and smooth transitions
 
-## 📦 Installation
+### 📦 Installation
 
 1. In your Shopify admin, navigate to **Online Store > Themes**
 2. Click **Actions > Edit code** on your active theme
@@ -93,7 +93,7 @@ I've used the Horizon themes which provides maximum flexibility, making editing 
 5. Copy and paste the provided code into the file
 6. Click **Save**
 
-## 🚀 Usage
+### 🚀 Usage
 
 ### Adding to Templates
 
