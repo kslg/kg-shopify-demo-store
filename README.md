@@ -784,10 +784,11 @@ This is a simple **Node.js + Express** server for capturing Shopify webhooks in 
 
 ### Cart Webhook
 ```bash
-🛒 New Cart Webhook Received
-🕒 9/21/2025, 5:43:02 PM
-📝 Cart Token: abcd-efgh-1234
-👤 Customer ID: 54321
-💰 Total: 19.99
+🛒 New Cart Webhook Received  
+🕒 9/21/2025, 5:43:02 PM  
+📝 Cart Token: abcd-efgh-1234  
+👤 Customer ID: 54321  
+💰 Total: 19.99  
+
 
 [Back to contents](#contents)
