@@ -786,14 +786,9 @@ This is a simple **Node.js + Express** server for capturing Shopify webhooks in 
 
 I created a seasonal collection page for a summer collection. This seasonal collection template includes:
 
-| The collection title | The collection description |
-|A call-to-action section for customers to pre-order now|A product grid with all the products in the collection|
-
-| Browser | Support | Notes |
-|---------|---------|--------|
-| Chrome | ✅ Full | Autoplay supported |
-| Firefox | ✅ Full | Autoplay supported |
-| Safari | ✅ Full | Autoplay supported |
-| Edge | ✅ Full | Autoplay supported |
-| Mobile Browsers | ✅ Full | Uses `playsinline` attribute |
-| Older Browsers | ⚠️ Partial | Graceful fallback to poster image |
+<ul>
+  <li>The collection title</li>
+  <li>The collection description</li>
+  <li>A call-to-action section for customers to pre-order now</li>
+  <li>A product grid with all the products in the collection</li>
+</ul>
