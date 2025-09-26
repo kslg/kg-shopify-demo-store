@@ -63,7 +63,7 @@ I have demostared how to apply these features using platform configuration as we
 
 
 # User Experience
-I've used the Horizon themes which provides maximum flexibility, making editing easy and giving merchants powerful and intuitive tools. The theme is built on component-driven architecture and offer "total design freedom" with enhanced performance and intuitive visual editing capabilities.
+I selected the Horizon theme as the foundation for my demo store because it strikes a powerful balance between clean minimalism and conversion-focused features. It gives me enough flexibility to showcase my core understanding of shopify and knowledge of what an e-commerce store needs today.
 
 # Features
 
