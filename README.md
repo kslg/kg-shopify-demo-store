@@ -990,3 +990,10 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 .weight-lighter { font-weight: lighter; }
 ```
 [Back to contents](#contents)
+
+
+# Borrowed Resources
+
+- https://shopify.dev/docs/api/admin-graphql
+- https://www.shopifyacademy.com/path/shopify-development-fundamentals
+- https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory
