@@ -78,6 +78,8 @@ I selected the Horizon theme as the foundation for my demo store because it stri
 - 📱 **Fully responsive** design optimized for mobile devices
 - ✨ **Professional animations** with hover effects and smooth transitions
 
+---
+
 ### 📦 Installation
 
 1. In your Shopify admin, navigate to **Online Store > Themes**
@@ -87,7 +89,7 @@ I selected the Horizon theme as the foundation for my demo store because it stri
 5. Copy and paste the provided code into the file
 6. Click **Save**
 
-### 🚀 Usage
+---
 
 ### Adding to Templates
 
@@ -95,6 +97,8 @@ Add the section to any template file using:
 ```liquid
 {% section 'video-banner' %}
 ```
+
+---
 
 ### 🎥 Video Setup
 
@@ -104,7 +108,9 @@ Add the section to any template file using:
 4. Paste the video URL in the "Video URL" field
 5. Optionally add a poster image for faster loading
 
-### ⚙️ Customization Options
+---
+
+### ⚙️ Customisation Options
 
 The section includes comprehensive customization options accessible through the Shopify theme editor:
 
@@ -136,6 +142,8 @@ The section includes comprehensive customization options accessible through the 
 - **Button Text Color**: Text color for filled buttons
 - **Button Font Size**: Typography control (12-20px)
 
+---
+
 ## 🏗️ Technical Implementation
 
 ### File Structure
@@ -152,11 +160,15 @@ The section consists of three main components:
 2. **HTML Structure**: Liquid template with video element and overlay content
 3. **Schema Configuration**: JSON schema defining all customizable settings
 
-### 📱 Responsive Design
+---
+
+## 📱 Responsive Design
 
 The section automatically adapts to different screen sizes:
 - **Desktop**: Full viewport height (100vh) with large typography
 - **Mobile**: Reduced height (70vh) with scaled-down text and logo sizes
+
+---
 
 ## 🛠️ Troubleshooting
 
@@ -193,6 +205,8 @@ style="max-width: {{ section.settings.logo_width }}px;"
 - Use poster images to improve perceived loading speed
 - Consider using different video formats for different devices
 
+---
+
 ## 🌐 Browser Compatibility
 
 | Browser | Support | Notes |
@@ -203,6 +217,8 @@ style="max-width: {{ section.settings.logo_width }}px;"
 | Edge | ✅ Full | Autoplay supported |
 | Mobile Browsers | ✅ Full | Uses `playsinline` attribute |
 | Older Browsers | ⚠️ Partial | Graceful fallback to poster image |
+
+---
 
 ## 🔧 Development Notes
 
@@ -231,6 +247,8 @@ This documentation covers how to add custom product attributes using Shopify met
 ## What Are Metafields?
 
 Metafields are Shopify's way of storing custom data that doesn't fit into standard product fields. They allow you to add additional information like sustainability details, care instructions, sizing guides, or any other custom attributes to your products.
+
+---
 
 ## Implementation Guide
 
@@ -297,6 +315,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 - **Preview** your changes across different devices
 - **Publish** when satisfied
 
+---
+
 ## Best Practices
 
 ### Naming Conventions
@@ -318,6 +338,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 - Use descriptions to document the purpose of each metafield
 - Consider creating a content style guide for team members
 
+---
+
 ## Bulk Management
 
 ### CSV Method
@@ -326,6 +348,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 2. Add column: `Metafield: custom.sustainable_material [single_line_text_field]`
 3. Fill in values for applicable products
 4. **Import** the updated CSV
+
+---
 
 ## Troubleshooting
 
@@ -344,6 +368,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 2. **Test dynamic source** - In customizer, verify the connection shows your metafield name
 3. **Preview thoroughly** - Test on different products, including those without the metafield
 4. **Mobile testing** - Ensure display works properly on mobile devices
+
+---
 
 ## Maintenance
 
@@ -366,6 +392,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 ## Overview
 This guide will help you create a dynamic free shipping message on your Shopify cart page that updates based on the cart total, with full customization options through the theme editor and metafields integration.
+
+---
 
 ## Step 1: Create Metaobjects for Configuration
 
@@ -460,6 +488,8 @@ Test these scenarios:
 2. Test fallback to section settings
 3. Update threshold amounts and messages
 4. Test different currencies if applicable
+
+---
 
 ## Critical Issues Encountered
 
@@ -598,28 +628,7 @@ window.fetch = function() {
   });
 };
 ```
-
-## 🔧 Solution Evolution Timeline
-
-### Phase 1: Initial Section Creation
-- **Challenge:** Complex Liquid logic with JavaScript integration
-- **Issue:** Liquid parsing conflicts in script tags
-- **Resolution:** Separated Liquid from JavaScript concerns
-
-### Phase 2: Template Integration
-- **Challenge:** Section-in-section limitation
-- **Issue:** `Cannot render sections inside sections` error
-- **Resolution:** Converted to snippet approach
-
-### Phase 3: Functional Implementation  
-- **Challenge:** Cart update detection
-- **Issue:** Static display, no dynamic updates
-- **Resolution:** Multi-layered event detection system
-
-### Phase 4: Customization Requirements
-- **Challenge:** Theme editor integration while maintaining functionality
-- **Issue:** Lost dynamic functionality when using theme customizer
-- **Resolution:** Standalone section with comprehensive schema
+---
 
 ## 📋 Debugging Strategies Used
 
@@ -653,6 +662,8 @@ document.addEventListener('cart:refresh', function() {
   console.log('cart:refresh fired');
 });
 ```
+
+---
 
 ## 🎯 Key Lessons Learned
 
@@ -699,3 +710,84 @@ This is a simple **Node.js + Express** server for capturing Shopify webhooks in 
    ```bash
    git clone <your-repo-url>
    cd <project-folder>
+
+2. **Install dependencies**
+   ```bash
+   npm install express chalk
+
+3. **Run Server**
+   ```bash
+   node server.js
+
+   By default, the app runs on http://localhost:3000 
+
+4. **Expose the server with ngrok**
+   ```bash
+   ngrok http 3000
+
+   Copy the generated HTTPS forwarding URL
+
+5. **Register webhooks in Shopify Admin**
+   - Go to Shopify Admin > Settings > Notifications > Webhooks
+
+   Add a webhook for:
+   - Order creation → https://abcd1234.ngrok.io/order/create
+   - Cart creation → https://abcd1234.ngrok.io/cart/create
+
+  ---
+
+## 📦 Code Overview
+
+### Order Webhook (`/order/create`)
+- Captures new order events  
+- Logs **Order ID**, **Customer Email**, and **Total Price**
+
+### Cart Webhook (`/cart/create`)
+- Captures new cart creation events  
+- Logs **Cart Token**, **Customer ID**, and **Total Price**
+
+👉 Both webhooks pretty-print the **full JSON payload** for debugging.
+
+---
+
+## ⚠️ Errors Encountered
+
+### 1. Ngrok Tunnel Expired
+- **Cause:** Free ngrok sessions expire after some hours  
+- **Fix:** Restart ngrok and update the webhook URL in Shopify  
+
+### 2. Shopify Webhook Failing with 401 or Timeout
+- **Cause:** Shopify couldn’t reach your local server  
+- **Fix:** Make sure ngrok is running and the server is active  
+
+### 3. Empty Payloads
+- **Cause:** Request body was not parsed  
+- **Fix:** Added `app.use(express.json())` middleware in Express  
+
+### 4. Confusing Logs
+- **Cause:** Raw JSON payloads were hard to read  
+- **Fix:** Added Chalk for colored logs and used:
+  ```js
+  console.dir(payload, { depth: null, colors: true });
+
+  ---
+
+## 📖 Example Logs
+
+### Order Webhook
+```bash
+📦 New Order Webhook Received
+🕒 9/21/2025, 5:42:10 PM
+🛒 Order ID: 1234567890
+📧 Customer Email: test@example.com
+💰 Total: 49.99 USD
+
+### Cart Webhook
+```bash
+🛒 New Cart Webhook Received
+🕒 9/21/2025, 5:43:02 PM
+📝 Cart Token: abcd-efgh-1234
+👤 Customer ID: 54321
+💰 Total: 19.99
+
+[Back to contents](#contents)
