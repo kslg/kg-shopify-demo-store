@@ -789,3 +789,11 @@ I created a seasonal collection page for a summer collection. This seasonal coll
 | The collection title | The collection description |
 |A call-to-action section for customers to pre-order now|A product grid with all the products in the collection|
 
+| Browser | Support | Notes |
+|---------|---------|--------|
+| Chrome | ✅ Full | Autoplay supported |
+| Firefox | ✅ Full | Autoplay supported |
+| Safari | ✅ Full | Autoplay supported |
+| Edge | ✅ Full | Autoplay supported |
+| Mobile Browsers | ✅ Full | Uses `playsinline` attribute |
+| Older Browsers | ⚠️ Partial | Graceful fallback to poster image |
