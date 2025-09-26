@@ -807,7 +807,7 @@ I created a seasonal collection page for a summer collection. This seasonal coll
 - Scroll through the menu bar. Under 📁 Sections, select + Add a new section. Leave the radio button on ‘liquid’ and make the file name call-to-action.liquid
 
 ## Step 4 Add the Liquid Code
-`	
+```bash
 <div>
 	<h2>{{ section.settings.pre-order-title }}</h2>
 
@@ -839,7 +839,7 @@ I created a seasonal collection page for a summer collection. This seasonal coll
 ]
 }
 {% endschema %}
-`
+
 
 
 
