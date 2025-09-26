@@ -792,3 +792,54 @@ I created a seasonal collection page for a summer collection. This seasonal coll
   <li>A call-to-action section for customers to pre-order now</li>
   <li>A product grid with all the products in the collection</li>
 </ul>
+
+## Step 1: Create a manual collection in the Shopify Admin page
+- In the Shopify Admin page, select Products > Collection > Create collection to create a summer collection with an enticing description.
+- Click Save and add a few products from your store to this collection.
+
+## Step 2 Create a new collection template in the theme editor
+- Head over to the theme editor. At the top of the page, click the Home Page drop down menu.
+- Select Collections and select "Create template"
+- Name the template “Summer Collection”.
+
+## Step 3 Create a new section in the web code editor
+- Head to the web code editor by clicking the ... menu and select Edit code. I createe a custom collection banner for a seasonal collection.
+- Scroll through the menu bar. Under 📁 Sections, select + Add a new section. Leave the radio button on ‘liquid’ and make the file name call-to-action.liquid
+
+## Step 4 Add the Liquid Code
+`	
+<div>
+	<h2>{{ section.settings.pre-order-title }}</h2>
+
+	The new {{ collection.title }} is out now! {{ section.settings.pre-order-text }}
+</div>										  
+{% schema %}
+{
+"name": "Call to action",
+"settings": [
+	{
+	"id": "pre-order-title",
+	"type": "text",
+	"label": "Title",
+	"default": "Pre-order now!"
+	},
+	{
+	"id": "pre-order-text",
+	"type": "textarea",
+	"label": "Text",
+	"default": "Enter text here"
+	}
+]
+,
+"presets": [
+	{
+	"name": "Call to Action",
+	"category": "Promotional"
+	}
+]
+}
+{% endschema %}
+`
+
+
+
