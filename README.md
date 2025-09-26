@@ -989,3 +989,4 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 .weight-bold { font-weight: bold; }
 .weight-lighter { font-weight: lighter; }
 ```
+[Back to contents](#contents)
