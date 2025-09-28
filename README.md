@@ -1121,10 +1121,11 @@ Create targeted workflows for:
 
 [Back to contents](#contents)
 
-# Borrowed Resources
+# Credits and Borrowed Resources
 
-- https://shopify.dev/docs/api/admin-graphql
-- https://www.shopifyacademy.com/path/shopify-development-fundamentals
-- https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory
+- [GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql "This page will help you get up and running with Shopify’s GraphQL API")
+- [Shopify Development Fundamentals](https://www.shopifyacademy.com/path/shopify-development-fundamentals "Learn Shopify's framework and the necessary steps to start developing on Shopify’s platform.")
+- [](https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory "Keeping track of your inventory is essential for running your business efficiently")
+
 
 [Back to contents](#contents)
