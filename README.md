@@ -15,6 +15,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 - [User Experience](#user-experience)
 - [Core Shopify Features](#core-shopify-features)
 	* [Metafield Custom Product Attribute](#metafield-custom-product-attribute)
+ 	* [Shopify Automatic Discount Buy X Get Y](#shopify-automatic-discount-buy-x-get-y)
 - [Automation and Workflow](#automation-and-workflow)
 	* [Shopify Flow - Automated Low Inventory Email Alert](#shopify-flow---automated-low-inventory-email-alert)
 	* [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
@@ -155,13 +156,65 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 | **Content not displaying** | Ensure metafield has content and dynamic source is properly connected |
 | **Styling issues** | Use theme customizer styling options rather than custom CSS |
 
-### Testing Verification Steps
+[Back to contents](#contents)
 
-1. **Check metafield content** - Visit product admin page and verify field is populated
-2. **Test dynamic source** - In customizer, verify the connection shows your metafield name
-3. **Preview thoroughly** - Test on different products, including those without the metafield
-4. **Mobile testing** - Ensure display works properly on mobile devices
+---
 
+## Shopify Automatic Discount Buy X Get Y
+
+This guide shows you how to implement quantity-based discounts (like "Buy 2, get 10% off") using Shopify's native discount functionality. No custom development, apps, or Shopify Plus subscription required.
+
+## What You Can Create
+- **Buy X, Get Y discounts** - Classic bundle deals (e.g., "Buy 2, get 1 free")
+- **Percentage discounts** - Volume discounts (e.g., "Buy 2+, get 10% off")
+- **Fixed amount discounts** - Dollar-off deals (e.g., "Buy 3+, get $5 off")
+- **Free shipping** - Minimum order discounts
+
+## Prerequisites
+- Shopify store (any plan)
+- Admin access to your Shopify dashboard
+- Products you want to include in the discount
+
+## Step-by-Step Setup
+
+### Method 1: Buy X, Get Y Discount (Most Common)
+
+1. **Navigate to Discounts**
+   - From your Shopify admin, go to **Discounts**
+   - Click **Create discount**
+
+2. **Select Discount Type**
+   - Choose **"Buy X get Y"** from the discount type menu
+
+3. **Choose Method**
+   - **Automatic discount**: Applied automatically at checkout (recommended)
+   - **Discount code**: Customers must enter a code
+
+4. **Configure Customer Buys Section**
+   ```
+   Minimum quantity of items: 2
+   From: Specific products/collections (choose your products)
+   ```
+
+5. **Configure Customer Gets Section**
+   - **For percentage discount**: 
+     ```
+     Quantity: Same items
+     Discount: 10% off
+     ```
+   - **For dollar amount discount**:
+     ```
+     Quantity: Same items  
+     Discount: $5 off
+     ```
+
+6. **Set Additional Options**
+   - **Maximum discount uses per order**: Leave blank for unlimited
+   - **Combination**: Choose if this can combine with other discounts
+   - **Active dates**: Set start/end dates if needed
+   - **Usage limits**: Set total usage limits if needed
+
+7. **Save Your Discount**
 
 [Back to contents](#contents)
 
