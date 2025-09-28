@@ -46,13 +46,10 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Databases](#databases)
     * [Other tools](#other-tools)
 - [Credits and Borrowed Resources](#credits-and-borrowed-resources)
-    * [BootStrap Support](#bootstrap-support)
-    * [Project Support](#project-support)
-    * [E-commerce User Stories Support](#e-commerce-user-stories-support)
-    * [Static Content and Copy](#static-content-and-copy)
-    * [Product Details and Images](#product-details-and-images)
-    * [Mind Map images](#mind-map-images)
-    * [Web and Social Media Marketing](#web-and-social-media-marketing)
+    * [GraphQL Admin API reference](#graphql-admin-api-reference)
+    * [Shopify Development Fundamentals](#shopify-development-fundamentals)
+    * [Tracking and adjusting inventory](#tracking-and-adjusting-inventory)
+
  
 
 
@@ -1125,7 +1122,7 @@ Create targeted workflows for:
 
 - [GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql "This page will help you get up and running with Shopify’s GraphQL API")
 - [Shopify Development Fundamentals](https://www.shopifyacademy.com/path/shopify-development-fundamentals "Learn Shopify's framework and the necessary steps to start developing on Shopify’s platform.")
-- [](https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory "Keeping track of your inventory is essential for running your business efficiently")
+- [Tracking and adjusting inventory](https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory "Keeping track of your inventory is essential for running your business efficiently")
 
 
 [Back to contents](#contents)
