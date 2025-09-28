@@ -60,23 +60,13 @@ I selected the Horizon theme as the foundation for my demo store because it stri
 
 # Metafield Custom Product Attribute
 
-## Overview
-
-This documentation covers how to add custom product attributes using Shopify metafields and dynamic sources through the theme customizer - **no code editing required**.
+I added add custom product attributes using Shopify metafields and dynamic sources through the theme customizer - **no code editing required**.
 
 ## What Are Metafields?
 
 Metafields are Shopify's way of storing custom data that doesn't fit into standard product fields. They allow you to add additional information like sustainability details, care instructions, sizing guides, or any other custom attributes to your products.
 
----
-
 ## Implementation Guide
-
-### Prerequisites
-
-- Shopify store with modern theme (Horizon, Dawn, etc.)
-- Admin access to Shopify store
-- Products to add custom attributes to
 
 ### Step 1: Create Metafield Definition
 
@@ -86,31 +76,20 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 | Field | Value | Notes |
 |-------|-------|-------|
-| **Name** | `Sustainable Material` | Human-readable label shown in admin |
-| **Namespace and key** | `custom.sustainable_material` | Technical identifier for the field |
-| **Description** | `Information about sustainable materials used` | Optional helper text |
+| **Name** | `Buy 2 Save 10% on all Summer Collections` | Human-readable label shown in admin |
+| **Namespace and key** | `buy_2_save_10_of_all_summer_collections` | Technical identifier for the field |
+| **Description** | `Buy 2 Save 10% on all Summer Collections` | Optional helper text |
 | **Type** | `Single line text` | Data type - see options below |
 | **Content type** | `Products` | Where this metafield can be used |
 
 4. Click **"Save"**
-
-#### Available Data Types
-
-- **Single line text** - Short text (e.g., "Made from sustainable cotton")
-- **Multi-line text** - Longer text with line breaks
-- **Rich text** - Formatted text with bold, italic, links
-- **Number** - Numeric values
-- **True/False** - Yes/no checkbox
-- **Date** - Calendar dates
-- **URL** - Web addresses
-- **JSON** - Structured data
 
 ### Step 2: Add Content to Products
 
 1. Go to **Products** in Shopify admin
 2. **Edit** the product you want to add the attribute to
 3. Scroll to the **"Metafields"** section (usually near the bottom)
-4. Find your **"Sustainable Material"** field
+4. Find your **"Buy 2 Save 10% on all Summer Collections"** field
 5. Enter your content (e.g., `Made from sustainable cotton.`)
 6. **Save** the product
 
@@ -125,7 +104,7 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
    - Or use existing **"Product information"** sections
 4. In the block settings, find text fields that support dynamic sources
 5. Click the **"Connect dynamic source"** icon (🔗 chain link or database symbol)
-6. Select **"Products"** → **"Sustainable Material"** (your metafield name)
+6. Select **"Products"** → **"Buy 2 Save 10% on all Summer Collections"** (your metafield name)
 7. **Save** your changes
 
 ### Step 4: Style and Position
@@ -134,8 +113,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 - Adjust **text styling** (font size, color, alignment) through customizer settings
 - **Preview** your changes across different devices
 - **Publish** when satisfied
-
----
 
 ## Best Practices
 
@@ -158,8 +135,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 - Use descriptions to document the purpose of each metafield
 - Consider creating a content style guide for team members
 
----
-
 ## Bulk Management
 
 ### CSV Method
@@ -168,8 +143,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 2. Add column: `Metafield: custom.sustainable_material [single_line_text_field]`
 3. Fill in values for applicable products
 4. **Import** the updated CSV
-
----
 
 ## Troubleshooting
 
@@ -189,22 +162,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 3. **Preview thoroughly** - Test on different products, including those without the metafield
 4. **Mobile testing** - Ensure display works properly on mobile devices
 
----
-
-## Maintenance
-
-### Regular Tasks
-
-- **Review content** periodically for accuracy and consistency
-- **Update styling** through theme customizer as needed
-- **Monitor performance** - too many metafields can slow admin interface
-- **Document changes** for team members
-
-### When Updating Themes
-
-- Metafield definitions persist through theme changes
-- Dynamic source connections may need to be re-established
-- Test display after theme updates
 
 [Back to contents](#contents)
 
