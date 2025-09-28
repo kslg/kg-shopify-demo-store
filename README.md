@@ -58,15 +58,15 @@ I selected the Horizon theme as the foundation for my demo store because it stri
 
 # Core Shopify Features
 
-# Metafield Custom Product Attribute
+## Metafield Custom Product Attribute
 
 I added add custom product attributes using Shopify metafields and dynamic sources through the theme customizer - **no code editing required**.
 
-## What Are Metafields?
+### What Are Metafields?
 
 Metafields are Shopify's way of storing custom data that doesn't fit into standard product fields. They allow you to add additional information like sustainability details, care instructions, sizing guides, or any other custom attributes to your products.
 
-## Implementation Guide
+### Implementation Guide
 
 ### Step 1: Create Metafield Definition
 
