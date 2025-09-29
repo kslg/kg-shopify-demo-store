@@ -115,47 +115,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 ![image](documentation/screenshots/metafield_pdp.png)
 
-## Best Practices
-
-### Naming Conventions
-
-- **Names**: Use clear, descriptive names (`Sustainable Material`, `Care Instructions`)
-- **Keys**: Use lowercase with underscores (`sustainable_material`, `care_instructions`)
-- **Namespaces**: Stick with `custom` for simplicity, or create logical groups (`eco`, `sizing`)
-
-### Content Guidelines
-
-- Keep text concise and customer-focused
-- Use consistent formatting across products
-- Only populate metafields for relevant products
-- Consider multiple languages if you have international customers
-
-### Organization
-
-- Group related metafields with consistent naming
-- Use descriptions to document the purpose of each metafield
-- Consider creating a content style guide for team members
-
-## Bulk Management
-
-### CSV Method
-
-1. **Export products** via CSV from Products → Export
-2. Add column: `Metafield: custom.sustainable_material [single_line_text_field]`
-3. Fill in values for applicable products
-4. **Import** the updated CSV
-
-## Troubleshooting
-
-### Common Issues
-
-| Problem | Solution |
-|---------|----------|
-| **Metafield not appearing in admin** | Check metafield definition is saved and content type is "Products" |
-| **Dynamic source option missing** | Verify your theme supports dynamic sources (most modern themes do) |
-| **Content not displaying** | Ensure metafield has content and dynamic source is properly connected |
-| **Styling issues** | Use theme customizer styling options rather than custom CSS |
-
 [Back to contents](#contents)
 
 ---
