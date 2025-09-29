@@ -115,6 +115,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 - **Preview** your changes across different devices
 - **Publish** when satisfied
 
+![image](documentation/screenshots/metafield_pdp.png)
+
 ## Best Practices
 
 ### Naming Conventions
@@ -155,9 +157,6 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 | **Dynamic source option missing** | Verify your theme supports dynamic sources (most modern themes do) |
 | **Content not displaying** | Ensure metafield has content and dynamic source is properly connected |
 | **Styling issues** | Use theme customizer styling options rather than custom CSS |
-
-
-![image](documentation/screenshots/metafield_pdp.png)
 
 [Back to contents](#contents)
 
