@@ -1,8 +1,6 @@
+<h1 align="center">Urban Ember - Shopify Dev Store by Krishan.</h1>
 
- # Urban Ember - Shopify Dev Store by Krishan.
-
-
-[<img src="src/assets/images/devworthy_amiresponsive_whole.png" alt="An image representing how the site looks across different devices of varying size.">](https://anthonyradose.github.io/dev-worthy/#/)
+![image](documentation/screenshots/i_am_responsive.png)
 
 [🔗 View the live project here.](https://krish-demostore.myshopify.com/)
 
