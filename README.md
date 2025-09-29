@@ -154,6 +154,8 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 
 7. **Save Your Discount**
 
+![image](documentation/screenshots/buy_x_get_y.png)
+
 [Back to contents](#contents)
 
 ---
