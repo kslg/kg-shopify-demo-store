@@ -162,22 +162,9 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 ## Shopify Automatic Discount Buy X Get Y
 
-This guide shows you how to implement quantity-based discounts (like "Buy 2, get 10% off") using Shopify's native discount functionality. No custom development, apps, or Shopify Plus subscription required.
-
-## What You Can Create
-- **Buy X, Get Y discounts** - Classic bundle deals (e.g., "Buy 2, get 1 free")
-- **Percentage discounts** - Volume discounts (e.g., "Buy 2+, get 10% off")
-- **Fixed amount discounts** - Dollar-off deals (e.g., "Buy 3+, get $5 off")
-- **Free shipping** - Minimum order discounts
-
-## Prerequisites
-- Shopify store (any plan)
-- Admin access to your Shopify dashboard
-- Products you want to include in the discount
+This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%") using Shopify's native discount functionality. No custom development, apps, or Shopify Plus subscription required.
 
 ## Step-by-Step Setup
-
-### Method 1: Buy X, Get Y Discount (Most Common)
 
 1. **Navigate to Discounts**
    - From your Shopify admin, go to **Discounts**
@@ -187,13 +174,12 @@ This guide shows you how to implement quantity-based discounts (like "Buy 2, get
    - Choose **"Buy X get Y"** from the discount type menu
 
 3. **Choose Method**
-   - **Automatic discount**: Applied automatically at checkout (recommended)
-   - **Discount code**: Customers must enter a code
+   - **Automatic discount**: Applied automatically at cart and checkout
 
 4. **Configure Customer Buys Section**
    ```
    Minimum quantity of items: 2
-   From: Specific products/collections (choose your products)
+   From: collections
    ```
 
 5. **Configure Customer Gets Section**
@@ -202,17 +188,10 @@ This guide shows you how to implement quantity-based discounts (like "Buy 2, get
      Quantity: Same items
      Discount: 10% off
      ```
-   - **For dollar amount discount**:
-     ```
-     Quantity: Same items  
-     Discount: $5 off
-     ```
 
 6. **Set Additional Options**
    - **Maximum discount uses per order**: Leave blank for unlimited
-   - **Combination**: Choose if this can combine with other discounts
-   - **Active dates**: Set start/end dates if needed
-   - **Usage limits**: Set total usage limits if needed
+   - I added a **Combination** setting so the discount does not combine with any other discount at checkout
 
 7. **Save Your Discount**
 
