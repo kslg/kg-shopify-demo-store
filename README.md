@@ -32,7 +32,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
         + [Google Lighthouse Score](#google-lighthouse-score)
         + [Microsoft Edge Lighthouse score](#microsoft-edge-lighthouse-score)
 
-- [Bugs Encountered during Testing](#bugs-encountered-during-testing)
+- [Bugs Encountered](#bugs-encountered)
         + [Bug 1](#bug-1)
         + [Bug 2](#bug-2)
         + [Bug 3](#bug-3)
@@ -267,45 +267,6 @@ The section automatically adapts to different screen sizes:
 - **Desktop**: Full viewport height (100vh) with large typography
 - **Mobile**: Reduced height (70vh) with scaled-down text and logo sizes
 
----
-
-## 🛠️ Troubleshooting
-
-### ❌ Common Issues and Solutions
-
-#### Liquid Syntax Error: Unexpected character +
-
-**Problem**: Shopify Liquid doesn't support the `+` operator for string concatenation.
-
-```liquid
-<!-- ❌ This causes an error -->
-{{ section.settings.logo | img_url: section.settings.logo_width + 'x' }}
-```
-
-**Solution**: Use a fixed image size with CSS for scaling:
-
-```liquid
-<!-- ✅ This works correctly -->
-{{ section.settings.logo | img_url: '400x' }}
-<!-- Control size with CSS -->
-style="max-width: {{ section.settings.logo_width }}px;"
-```
-
-**Why this happens**: Shopify Liquid uses different syntax than JavaScript. For string concatenation, use the `append` or `prepend` filters instead of `+`.
-
-#### 🎥 Video Not Playing
-- Ensure the video file is uploaded to Shopify Files
-- Check that the video URL is correct and accessible
-- Verify the video is in MP4 format for best browser compatibility
-- Modern browsers require user interaction for autoplay with sound (this section uses muted autoplay)
-
-#### ⚡ Performance Optimization
-- Keep video files under 10MB for optimal loading
-- Use poster images to improve perceived loading speed
-- Consider using different video formats for different devices
-
----
-
 ## 🌐 Browser Compatibility
 
 | Browser | Support | Notes |
@@ -317,22 +278,6 @@ style="max-width: {{ section.settings.logo_width }}px;"
 | Mobile Browsers | ✅ Full | Uses `playsinline` attribute |
 | Older Browsers | ⚠️ Partial | Graceful fallback to poster image |
 
----
-
-## 🔧 Development Notes
-
-### Key Liquid Techniques Used
-- `img_url` filter for responsive image sizing
-- Conditional rendering with `{% if %}` statements
-- Dynamic CSS properties using Liquid variables
-- Schema-driven customization options
-
-### CSS Features
-- CSS Grid and Flexbox for layout
-- Object-fit for video scaling
-- CSS custom properties for dynamic styling
-- Mobile-first responsive design
-- Smooth transitions and hover effects
 
 [Back to contents](#contents)
 
