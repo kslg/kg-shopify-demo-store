@@ -1029,7 +1029,7 @@ When I clicked "Install App", I got redirected to the Install App page and saw t
 2. In the Distribution section > selected Custom distribution
 
 
-### 2. Error - "The installation link for this app is invalid"
+### 2. Error: Products not loading on the Frontend - "The installation link for this app is invalid"
 
 I loaded the frontend of the store and I saw the error message rendered rendered. This error shows if the products fail to load.
 
