@@ -963,12 +963,12 @@ From UE Team
 This is a headless commerce demo alongside my existing store. I decided to create a separate sales channel with a dedicated page. I can use this for flash sales or exclusive offers for VIP customer segments, for example.
 
 What It Does:
-✅ Fetches real products from Shopify via GraphQL Storefront API
-✅ Displays products in a modern grid layout
-✅ Shopping cart functionality (stored in memory during session)
-✅ Add to cart with quantities
-✅ Completely independent from the Urban Ember store
-✅ Mobile responsive design
+- ✅ Fetches real products from Shopify via GraphQL Storefront API
+- ✅ Displays products in a modern grid layout
+- ✅ Shopping cart functionality (stored in memory during session)
+- ✅ Add to cart with quantities
+- ✅ Completely independent from the Urban Ember store
+- ✅ Mobile responsive design
 
 This demonstrates decoupled architecture. This storefront is completely independent from the Urban Ember Horizon theme. My products are being served via API and not through the traditional Shopify theme system.
 
@@ -979,7 +979,7 @@ This demonstrates decoupled architecture. This storefront is completely independ
 - This gives you separate API credentials (Storefront API access tokens)
 - Your existing store continues running on the Horizon theme completely untouched
 
-![image](/documentation/headless_1.png)
+![image](/documentation/screenshots/headless_1.png)
 
 ## Built a Simple Headless Demo
 
@@ -991,7 +991,7 @@ I created a simeple headless storefront in HTML:
 - Demonstrates the "headless" concept clearly
 - Can be hosted anywhere (Netlify, Vercel, GitHub Pages, or even locally).
 
-![image](/documentation/headless_2.png)
+![image](/documentation/screenshots/headless_2.png)
 
 ## Created the Custom App
 
@@ -1006,8 +1006,14 @@ unauthenticated_read_product_tags
 unauthenticated_write_checkouts
 unauthenticated_read_checkouts
 ``
+## Install the app and add Storefront API access token to the HTML
 
-![image](/documentation/headless_3.png)
+- Click "Install app"
+- This generates your API credentials
+- Replace YOUR_STORE_NAME with your actual store name (e.g., if your store is demo-store.myshopify.com, use demo-store)
+- Replace YOUR_STOREFRONT_ACCESS_TOKEN with the Storefront API access token.
+
+![image](/documentation/screenshots/headless_3.png)
 
 
 [Back to contents](#contents)
