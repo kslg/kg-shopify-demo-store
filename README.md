@@ -9,7 +9,7 @@ This is the documentation for my demo Shopify store – an urban clothing brand 
 I have demonstrated how to apply these features using "out-the-box" configuration as well as code development. I hope you enjoy it.
 
 
-# `Contents`
+# Contents
 - [User Experience](#user-experience)
 - [Core Shopify Features](#core-shopify-features)
 	* [Metafield Custom Product Attribute](#metafield-custom-product-attribute)
