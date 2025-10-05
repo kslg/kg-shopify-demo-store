@@ -1041,7 +1041,7 @@ I then realised I may not have installed the app to the store. I clicked 'Instal
 
 I need to add the `Storefront API access token`. I was trying to look for the API access token but I could only see the Client ID and secret instead. I also tried to refresh the token below but was still seeing the error on the frontend.
 
-![image](/documentation/screenshots/headless_7.png)
+![image](/documentation/screenshots/headless_7_updated.png)
 
 I still coudn't seem to find the API access token and seems to be a common issue in the shopify community: <br>
 `https://community.shopify.com/t/admin-api-access-token-for-shopify-partner-app/370386/2`
