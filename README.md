@@ -22,6 +22,8 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
 - [Headless Storefront](#headless-storefront)
+  	* [Issues Encountered](#issues-encountered)
+	
 - [SEO Optimisation](#seo-optimisation)
     * [Internal and External Links and SEO](#internal-and-external-links-and-seo)
     * [Sitemap XML](#sitemap-xml)
@@ -956,6 +958,66 @@ From UE Team
 - `{{product.id}}` - Product ID (GraphQL format)
 - `{{product.handle}}` - Product URL handle
 
+## Known Limitations and Workarounds
+
+### 1. GraphQL ID Format Issue
+**Problem**: `{{product.id}}` returns GraphQL format (`gid://shopify/Product/123456`) instead of numeric ID.
+
+**Impact**: Cannot create clean admin product URLs like `https://admin.shopify.com/store/name/products/123456`
+
+**Workaround**: Use storefront URLs instead: `https://your-store.myshopify.com/products/{{product.handle}}`
+
+### 2. SKU Limitations
+**Problem**: SKU variables are not accessible for products without variants.
+
+**Workaround**: Use Product ID and Handle for product identification instead.
+
+### 3. Admin URL Generation
+**Problem**: Cannot generate direct admin product links due to GraphQL ID format.
+
+**Workaround**: Include Product ID in email for manual admin search, or use storefront links.
+
+## Best Practices
+
+### Multiple Alert Levels
+Consider creating separate workflows for different urgency levels:
+- Critical: ≤ 2 units (immediate action required)
+- Low: ≤ 10 units (reorder soon)
+- Warning: ≤ 25 units (plan reorder)
+
+### Business Hours Filtering
+Add time-based conditions to avoid after-hours notifications:
+- Only send emails during business hours
+- Different alert thresholds for weekends
+
+### Product-Specific Thresholds
+Create targeted workflows for:
+- High-value products (lower thresholds)
+- Seasonal items (adjusted thresholds)
+- Fast-moving inventory (higher thresholds)
+
+## Troubleshooting
+
+### Common Issues
+1. **Variable errors**: Ensure all variables are from the approved list above
+2. **No emails received**: Check spam folders and verify email addresses
+3. **Too many notifications**: Consider implementing delay conditions or higher thresholds
+4. **Missing products**: Verify inventory tracking is enabled for products
+
+### Testing
+- Used Shopify Flow's test feature before activation
+- Test with a single email address initially
+
+
+## Technical Notes
+
+- **Theme Independence**: This workflow functions regardless of store theme (tested with Horizon theme)
+- **Real-time Monitoring**: Triggers immediately when inventory changes
+- **Scalability**: Handles multiple products and locations
+- **No Coding Required**: Pure low-code/no-code solution
+
+[Back to contents](#contents)
+
 [Back to contents](#contents)
 
 # Headless Storefront
@@ -1015,7 +1077,7 @@ unauthenticated_read_checkouts
 
 ![image](/documentation/screenshots/headless_3.png)
 
-## Enountered Issues:
+## Issues Encountered:
 
 ### 1. I had to set up the distribution method first.
 
@@ -1023,7 +1085,7 @@ When I clicked "Install App", I got redirected to the Install App page and saw t
 
 ![image](/documentation/screenshots/headless_4.png)
 
-#### Fix
+### Fix
 
 1. Went into the Shopify Dev Dashboard
 2. In the Distribution section > selected Custom distribution
@@ -1052,7 +1114,7 @@ I saw this setting to open the Storefront API:
 
 ![image](/documentation/screenshots/headless_8.png)
 
-#### Fix
+### Fix
 
 - Manual API Call - I created a simple HTML tool that uses the Admin API credentials to generate the Storefront token.
 
@@ -1060,9 +1122,9 @@ I saw this setting to open the Storefront API:
 
 Filled in the form with:
 
-`Store Name`: Just the store name part (e.g., if your store is mystore.myshopify.com, enter mystore)
-`Client ID`: Copy from your Credentials page (the one you showed: caf83142013c6c30cb7909a8ec7867dd)
-`Client Secret`: Click the eye icon 👁️ next to "Secret" in Shopify admin to reveal it, then copy and paste
+- `Store Name`: Just the store name part (e.g., if your store is mystore.myshopify.com, enter mystore)
+- `Client ID`: Copy from your Credentials page (the one you showed: caf83142013c6c30cb7909a8ec7867dd)
+- `Client Secret`: Click the eye icon 👁️ next to "Secret" in Shopify admin to reveal it, then copy and paste
 
 2. Click "Generate Storefront Token"
 
@@ -1070,69 +1132,8 @@ The tool uses the Admin API credentials to create a Storefront API token, and di
 
 3. Copy the generated token
 
-Use the "Copy Token" button and then pasted it into the `Headless Storefront Demo` code.
-
-The products were then loading.
-
-[Back to contents](#contents)
-
-## Known Limitations and Workarounds
-
-### 1. GraphQL ID Format Issue
-**Problem**: `{{product.id}}` returns GraphQL format (`gid://shopify/Product/123456`) instead of numeric ID.
-
-**Impact**: Cannot create clean admin product URLs like `https://admin.shopify.com/store/name/products/123456`
-
-**Workaround**: Use storefront URLs instead: `https://your-store.myshopify.com/products/{{product.handle}}`
-
-### 2. SKU Limitations
-**Problem**: SKU variables are not accessible for products without variants.
-
-**Workaround**: Use Product ID and Handle for product identification instead.
-
-### 3. Admin URL Generation
-**Problem**: Cannot generate direct admin product links due to GraphQL ID format.
-
-**Workaround**: Include Product ID in email for manual admin search, or use storefront links.
-
-## Best Practices
-
-### Multiple Alert Levels
-Consider creating separate workflows for different urgency levels:
-- Critical: ≤ 2 units (immediate action required)
-- Low: ≤ 10 units (reorder soon)
-- Warning: ≤ 25 units (plan reorder)
-
-### Business Hours Filtering
-Add time-based conditions to avoid after-hours notifications:
-- Only send emails during business hours
-- Different alert thresholds for weekends
-
-### Product-Specific Thresholds
-Create targeted workflows for:
-- High-value products (lower thresholds)
-- Seasonal items (adjusted thresholds)
-- Fast-moving inventory (higher thresholds)
-
-## Troubleshooting
-
-### Common Issues
-1. **Variable errors**: Ensure all variables are from the approved list above
-2. **No emails received**: Check spam folders and verify email addresses
-3. **Too many notifications**: Consider implementing delay conditions or higher thresholds
-4. **Missing products**: Verify inventory tracking is enabled for products
-
-### Testing
-- Used Shopify Flow's test feature before activation
-- Test with a single email address initially
-
-
-## Technical Notes
-
-- **Theme Independence**: This workflow functions regardless of store theme (tested with Horizon theme)
-- **Real-time Monitoring**: Triggers immediately when inventory changes
-- **Scalability**: Handles multiple products and locations
-- **No Coding Required**: Pure low-code/no-code solution
+- Use the "Copy Token" button and then pasted it into the `Headless Storefront Demo` code.
+- The products were then loading.
 
 [Back to contents](#contents)
 
