@@ -127,17 +127,17 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%") using Shopify's native discount functionality. No custom development, apps, or Shopify Plus subscription required.
 
-## Step-by-Step Setup
+### Implementation Guide
 
 1. **Navigate to Discounts**
-   - From your Shopify admin, go to **Discounts**
-   - Click **Create discount**
+   - From your Shopify admin, go to `Discounts`
+   - Click `Create discount`
 
 2. **Select Discount Type**
-   - Choose **"Buy X get Y"** from the discount type menu
+   - Choose `"Buy X get Y"` from the discount type menu
 
 3. **Choose Method**
-   - **Automatic discount**: Applied automatically at cart and checkout
+   - `Automatic discount`: Applied automatically at cart and checkout
 
 4. **Configure Customer Buys Section**
    ```
@@ -146,15 +146,15 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
    ```
 
 5. **Configure Customer Gets Section**
-   - **For percentage discount**: 
+   - `For percentage discount`: 
      ```
      Quantity: Same items
      Discount: 10% off
      ```
 
 6. **Set Additional Options**
-   - **Maximum discount uses per order**: Leave blank for unlimited
-   - I added a **Combination** setting so the discount does not combine with any other discount at checkout
+   - `Maximum discount uses per order`: Leave blank for unlimited
+   - I added a `Combination` setting so the discount does not combine with any other discount at checkout
 
 7. **Save Your Discount**
 
