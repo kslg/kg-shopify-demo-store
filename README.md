@@ -26,6 +26,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
       	+ [Technical Implementation](#technical-implementation)
       	+ [Responsive Design](#responsive-design)
       	+ [Browser Compatibility](#browser-compatibility)
+      	+ [Issue Encountered](#issue-encountered)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
 - [Headless Storefront](#headless-storefront)
@@ -277,6 +278,22 @@ The section automatically adapts to different screen sizes:
 | Mobile Browsers | ✅ Full | Uses `playsinline` attribute |
 | Older Browsers | ⚠️ Partial | Graceful fallback to poster image |
 
+# Issue Encountered
+
+I copied the code into the blank liquid file and then clicked save. However, it did not save and i got this error message.
+
+```
+FileSaveError: Liquid syntax error (line 157): Unexpected character + in "{{ section.settings.logo | img_url: section.settings.logo_width + 'x' }}"
+```
+
+I used the `+` operator to concatenate strings in Liquid, but Shopify's Liquid doesn't support the `+` operator for string concatenation, like JavaScript or other programming languages do.
+
+## Fix
+
+Instead of trying to dynamically concatenate the width value with 'x', I did the following:
+
+- Used a fixed large size ('400x') for the img_url filter to ensure high quality
+- Applied the actual size control through inline CSS using style="max-width: {{ section.settings.logo_width }}px;"
 
 [Back to contents](#contents)
 
