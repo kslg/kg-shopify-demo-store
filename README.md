@@ -259,8 +259,6 @@ The section consists of three main components:
 2. `HTML Structure`: Liquid template with video element and overlay content
 3. `Schema Configuration`: JSON schema defining all customizable settings
 
----
-
 ## Responsive Design
 
 The section automatically adapts to different screen sizes:
@@ -1029,7 +1027,7 @@ Create targeted workflows for:
 
 [Back to contents](#contents)
 
-[Back to contents](#contents)
+---
 
 # Headless Storefront
 
