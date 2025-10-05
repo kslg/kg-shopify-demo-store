@@ -21,7 +21,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Homepage Video Banner](#homepage-video-banner)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
-   
+- [Headless Storefront] (#headless-storefront)
 - [SEO Optimisation](#seo-optimisation)
     * [Internal and External Links and SEO](#internal-and-external-links-and-seo)
     * [Sitemap XML](#sitemap-xml)
@@ -955,6 +955,62 @@ From UE Team
 - `{{product.totalInventory}}` - Current stock level
 - `{{product.id}}` - Product ID (GraphQL format)
 - `{{product.handle}}` - Product URL handle
+
+[Back to contents](#contents)
+
+# Headless Storefront
+
+This is a headless commerce demo alongside my existing store. I decided to create a separate sales channel with a dedicated page. I can use this for flash sales or exclusive offers for VIP customer segments, for example.
+
+What It Does:
+✅ Fetches real products from Shopify via GraphQL Storefront API
+✅ Displays products in a modern grid layout
+✅ Shopping cart functionality (stored in memory during session)
+✅ Add to cart with quantities
+✅ Completely independent from the Urban Ember store
+✅ Mobile responsive design
+
+This demonstrates decoupled architecture. This storefront is completely independent from the Urban Ember Horizon theme. My products are being served via API and not through the traditional Shopify theme system.
+
+## Created a Custom Storefront Channel
+
+- In Shopify Admin → Settings → Apps and sales channels
+- Add a custom app for your headless storefront
+- This gives you separate API credentials (Storefront API access tokens)
+- Your existing store continues running on the Horizon theme completely untouched
+
+![image](/documentation/headless_1.png)
+
+## Built a Simple Headless Demo
+
+I created a simeple headless storefront in HTML:
+
+- This uses the Shopify's Storefront API (GraphQL)
+- This fetches and displays the existing products
+- Will show cart functionality
+- Demonstrates the "headless" concept clearly
+- Can be hosted anywhere (Netlify, Vercel, GitHub Pages, or even locally).
+
+![image](/documentation/headless_2.png)
+
+## Created the Custom App
+
+- Click "Create an app" button
+- Gave it a name "Headless Storefront Demo"
+- Click "Create app"
+- Configured API Scopes: Click "Configure Storefront API scopes" > Enabled these scopes (minimum needed):
+``
+unauthenticated_read_product_listings
+unauthenticated_read_product_inventory
+unauthenticated_read_product_tags
+unauthenticated_write_checkouts
+unauthenticated_read_checkouts
+``
+
+![image](/documentation/headless_3.png)
+
+
+[Back to contents](#contents)
 
 ## Known Limitations and Workarounds
 
