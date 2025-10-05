@@ -18,7 +18,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 	* [Shopify Flow - Automated Low Inventory Email Alert](#shopify-flow---automated-low-inventory-email-alert)
 	* [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
 - [Advanced Shopify Development](#advanced-shopify-development)
-    * [Homepage Video Banner](#homepage-video-banner)
+	* [Homepage Video Banner](#homepage-video-banner)
       	+ [Implementation Guide](#implementation-guide)
       	+ [Adding to Templates](#adding-to-templates)
       	+ [Video Setup](#video-setup)
