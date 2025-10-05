@@ -963,12 +963,12 @@ From UE Team
 This is a headless commerce demo alongside my existing store. I decided to create a separate sales channel with a dedicated page. I can use this for flash sales or exclusive offers for VIP customer segments, for example.
 
 What It Does:
-- ✅ Fetches real products from Shopify via GraphQL Storefront API
-- ✅ Displays products in a modern grid layout
-- ✅ Shopping cart functionality (stored in memory during session)
-- ✅ Add to cart with quantities
-- ✅ Completely independent from the Urban Ember store
-- ✅ Mobile responsive design
+- ✅ Fetches real products from Shopify via GraphQL Storefront API<br>
+- ✅ Displays products in a modern grid layout<br>
+- ✅ Shopping cart functionality (stored in memory during session)<br>
+- ✅ Add to cart with quantities<br>
+- ✅ Completely independent from the Urban Ember store<br>
+- ✅ Mobile responsive design<br>
 
 This demonstrates decoupled architecture. This storefront is completely independent from the Urban Ember Horizon theme. My products are being served via API and not through the traditional Shopify theme system.
 
@@ -1010,11 +1010,69 @@ unauthenticated_read_checkouts
 
 - Click "Install app"
 - This generates your API credentials
-- Replace YOUR_STORE_NAME with your actual store name (e.g., if your store is demo-store.myshopify.com, use demo-store)
-- Replace YOUR_STOREFRONT_ACCESS_TOKEN with the Storefront API access token.
+- Replace `YOUR_STORE_NAME` with your actual store name (e.g., if your store is demo-store.myshopify.com, use demo-store)
+- Replace `YOUR_STOREFRONT_ACCESS_TOKEN` with the Storefront API access token.
 
 ![image](/documentation/screenshots/headless_3.png)
 
+## Enountered Issues:
+
+### 1. I had to set up the distribution method first.
+
+When I clicked "Install App", I got redirected to the Install App page and saw this error and asking me to open access for the app:
+
+![image](/documentation/screenshots/headless_4.png)
+
+#### Fix
+
+1. Went into the Shopify Dev Dashboard
+2. In the Distribution section > selected Custom distribution
+
+
+### 2. Error - "The installation link for this app is invalid"
+
+I loaded the frontend of the store and I saw the error message rendered rendered. This error shows if the products fail to load.
+
+![image](/documentation/screenshots/headless_5.png)
+
+I then realised I may not have installed the app to the store. I clicked 'Install App' and was direct this this error message
+
+![image](/documentation/screenshots/headless_6.png)
+
+I need to add the `Storefront API access token`. I was trying to look for the API access token but I could only see the Client ID and secret instead. I also tried to refresh the token below but was still seeing the error on the frontend.
+
+![image](/documentation/screenshots/headless_7.png)
+
+I still coudn't seem to find the API access token and seems to be a common issue in the shopify community: <br>
+`https://community.shopify.com/t/admin-api-access-token-for-shopify-partner-app/370386/2`
+
+I saw this setting to open the Storefront API:
+
+- Dev Dashboard > Settings > Storefront API > Manage > Open / Request Access
+
+![image](/documentation/screenshots/headless_8.png)
+
+#### Fix
+
+- Manual API Call - I created a simple HTML tool that uses the Admin API credentials to generate the Storefront token.
+
+![image](/documentation/screenshots/headless_9.png)
+
+Filled in the form with:
+
+`Store Name`: Just the store name part (e.g., if your store is mystore.myshopify.com, enter mystore)
+`Client ID`: Copy from your Credentials page (the one you showed: caf83142013c6c30cb7909a8ec7867dd)
+`Client Secret`: Click the eye icon 👁️ next to "Secret" in Shopify admin to reveal it, then copy and paste
+
+2. Click "Generate Storefront Token"
+
+The tool uses the Admin API credentials to create a Storefront API token, and displayed the token when successful.
+
+3. Copy the generated token
+
+Use the "Copy Token" button and then pasted it into the `Headless Storefront Demo` code.
+
+The products were then loading.
 
 [Back to contents](#contents)
 
