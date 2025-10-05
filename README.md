@@ -21,7 +21,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Homepage Video Banner](#homepage-video-banner)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
-- [Headless Storefront] (#headless-storefront)
+- [Headless Storefront](#headless-storefront)
 - [SEO Optimisation](#seo-optimisation)
     * [Internal and External Links and SEO](#internal-and-external-links-and-seo)
     * [Sitemap XML](#sitemap-xml)
