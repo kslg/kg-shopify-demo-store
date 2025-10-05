@@ -209,7 +209,7 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 4. Paste the video URL in the `Video URL` field
 5. Optionally add a poster image for faster loading
 
-### ⚙️ Customisation Options:
+### Customisation Options:
 
 The section includes comprehensive customisation options accessible through the Shopify theme editor:
 
@@ -260,13 +260,13 @@ The section consists of three main components:
 
 ---
 
-## 📱 Responsive Design
+## Responsive Design
 
 The section automatically adapts to different screen sizes:
 - `Desktop`: Full viewport height (100vh) with large typography
 - `Mobile`: Reduced height (70vh) with scaled-down text and logo sizes
 
-## 🌐 Browser Compatibility
+## Browser Compatibility
 
 | Browser | Support | Notes |
 |---------|---------|--------|
@@ -284,12 +284,9 @@ The section automatically adapts to different screen sizes:
 
 # Cart Page Dynamic Free Shipping Message
 
-## Overview
-This guide will help you create a dynamic free shipping message on your Shopify cart page that updates based on the cart total, with full customization options through the theme editor and metafields integration.
+- This guide will help you create a dynamic free shipping message on your Shopify cart page that updates based on the cart total, with full customization options through the theme editor and metafields integration.
 
----
-
-## Step 1: Create Metaobjects for Configuration
+## 1: Create Metaobjects for Configuration
 
 ### 1.1 Set up Free Shipping Configuration Metaobject
 1. Go to `Settings > Metafields` in your Shopify admin
