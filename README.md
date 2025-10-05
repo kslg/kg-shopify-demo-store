@@ -22,9 +22,10 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
       	+ [Implementation Guide](#implementation-guide)
       	+ [Adding to Templates](#adding-to-templates)
       	+ [Video Setup](#video-setup)
-      
-      
-      
+      	+ [Customisation Options](#customisation-options)
+      	+ [Technical Implementation](#technical-implementation)
+      	+ [Responsive Design](#responsive-design)
+      	+ [Browser Compatibility](#browser-compatibility)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
 - [Headless Storefront](#headless-storefront)
