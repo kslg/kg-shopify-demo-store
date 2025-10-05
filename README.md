@@ -23,6 +23,8 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
 - [Headless Storefront](#headless-storefront)
   	* [Issues Encountered](#issues-encountered)
+  	  	+ [Issue 1](#issue-1)
+  	   	+ [Issue 2](#issue-2)
 	
 - [SEO Optimisation](#seo-optimisation)
     * [Internal and External Links and SEO](#internal-and-external-links-and-seo)
@@ -1079,7 +1081,9 @@ unauthenticated_read_checkouts
 
 ## Issues Encountered:
 
-### 1. I had to set up the distribution method first.
+### Issue 1 
+
+#### I had to set up the distribution method first.
 
 When I clicked "Install App", I got redirected to the Install App page and saw this error and asking me to open access for the app:
 
@@ -1091,7 +1095,9 @@ When I clicked "Install App", I got redirected to the Install App page and saw t
 2. In the Distribution section > selected Custom distribution
 
 
-### 2. Error: Products not loading on the Frontend - "The installation link for this app is invalid"
+### Issue 2
+
+#### Error: Products not loading on the Frontend - "The installation link for this app is invalid"
 
 I loaded the frontend of the store and I saw the error message rendered rendered. This error shows if the products fail to load.
 
