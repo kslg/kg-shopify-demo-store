@@ -48,7 +48,6 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 - [SEO Optimisation](#seo-optimisation)
     * [Page-Level SEO Settings](#page-level-seo-settings)
     * [Store-Wide Settings](#store-wide-settings)
-    * [Content-Based SEO](#content-based-seo)
 
 - [Performance](#performance)
 	* [Google Lighthouse Score](#google-lighthouse-score)
@@ -1183,14 +1182,14 @@ The tool uses the Admin API credentials to create a Storefront API token, and di
 
 Shopify has robust native SEO features built into the platform. Here's what I set up directly in my Horizon theme store without any apps.
 
-## Store-Wide Settings
+## Page-Level SEO Settings
 
 For Products, Collections, Pages:
 
 - Title tags and Meta Descriptions - Edit via `Search engine listing` section at the bottom of each product/collection/page
 - URL handles - Clean, keyword-rich URLs that you can edit when creating or editing items
 
-## Content-Based SEO
+## Store-Wide Settings
 
 Homepage & Store Settings:
 
