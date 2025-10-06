@@ -51,14 +51,13 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Content-Based SEO](#content-based-seo)
 
 - [Performance](#performance)
-        + [Google Lighthouse Score](#google-lighthouse-score)
+	* [Google Lighthouse Score](#google-lighthouse-score)
 
 - [Bugs Encountered](#bugs-encountered)
         + [Bug 1](#bug-1)
         + [Bug 2](#bug-2)
         + [Bug 3](#bug-3)
         + [Bug 4](#bug-4)
-- [Accessibility](#accessibility)
 
 - [Technologies used](#technologies-used)
     * [Languages](#languages)
