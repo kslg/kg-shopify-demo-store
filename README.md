@@ -61,11 +61,12 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Shopify Development Fundamentals](#shopify-development-fundamentals)
     * [Tracking and adjusting inventory](#tracking-and-adjusting-inventory)
 
- 
-
+--- 
 
 # User Experience
 I selected the Horizon theme as the foundation for my demo store because it strikes a powerful balance between clean minimalism and conversion-focused features. It gives me enough flexibility to showcase my core understanding of shopify and knowledge of what an e-commerce store needs today.
+
+---
 
 # Core Shopify Features
 
@@ -173,7 +174,6 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 ---
 
 # Advanced Shopify Development
----
 
 ## Homepage Video Banner
 
@@ -903,7 +903,6 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 ---
 
 # Automation and Workflow
----
 
 # Shopify Flow - Automated Low Inventory Email Alert
 
