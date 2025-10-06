@@ -75,7 +75,7 @@ I selected the Horizon theme as the foundation for my demo store because it stri
 
 ## Metafield Custom Product Attribute
 
-I added add custom product attributes using Shopify metafields and dynamic sources through the theme customizer - `no code editing required`.
+I added add custom product attributes using Shopify metafields and dynamic sources through the theme customiser - `no code editing required`.
 
 ### What Are Metafields?
 
@@ -108,9 +108,9 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 > `Tip:` You can bulk-edit metafields using CSV export/import for multiple products.
 
-### Step 3: Display via Theme Customizer
+### Step 3: Display via Theme customiser
 
-1. Navigate to `Online Store` → `Themes` → `Customize`
+1. Navigate to `Online Store` → `Themes` → `customise`
 2. Go to a `product page` in the preview
 3. Add a new section or block:
    - Look for `"Custom content"`, `"Rich text"`, or `"Text"` blocks
@@ -122,8 +122,8 @@ Metafields are Shopify's way of storing custom data that doesn't fit into standa
 
 ### Step 4: Style and Position
 
-- Use the `theme customizer` to position your block appropriately
-- Adjust `text styling` (font size, color, alignment) through customizer settings
+- Use the `theme customiser` to position your block appropriately
+- Adjust `text styling` (font size, color, alignment) through customiser settings
 - `Preview` your changes across different devices
 - `Publish` when satisfied
 
@@ -210,7 +210,7 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 
 1. Upload your video file to `Settings` > `Files` in Shopify admin
 2. Copy the file URL from the Files section
-3. In the theme customizer, navigate to the Video Banner section
+3. In the theme customiser, navigate to the Video Banner section
 4. Paste the video URL in the `Video URL` field
 5. Optionally add a poster image for faster loading
 
@@ -382,9 +382,9 @@ Add this liquid at the top of your section:
 ```
 ## Testing and Configuration for Dynamic Cart Message 
 
-### 6.1 Theme Customizer Setup
+### 6.1 Theme customiser Setup
 1. Go to `Online Store > Themes`
-2. Click `Customize` on your Horizon theme
+2. Click `customise` on your Horizon theme
 3. Navigate to your cart page
 4. You should see the "Free Shipping Message" section available to configure
 
@@ -459,7 +459,7 @@ Implemented a hybrid approach:
 {%- render 'free-shipping-message' -%}
 
 <!-- Then later converted to standalone section -->
-<!-- Added through theme customizer interface -->
+<!-- Added through theme customiser interface -->
 ```
 
 ### Issue #3: Metaobject Field Access Confusion
@@ -514,10 +514,10 @@ Attempting to mix Shopify's built-in block types (`@theme`, `@app`) with custom 
 `Solution:`
 Abandoned the block-based approach within existing cart section and used standalone section architecture instead.
 
-### Issue #5: Dynamic Updates Not Working in Theme Customizer
+### Issue #5: Dynamic Updates Not Working in Theme customiser
 
 `Problem:`
-When adding the section through the theme customizer, JavaScript cart updates weren't being detected properly, causing the message to not update when cart contents changed.
+When adding the section through the theme customiser, JavaScript cart updates weren't being detected properly, causing the message to not update when cart contents changed.
 
 `Root Cause:`
 Different themes use different cart update mechanisms. The Horizon theme's cart drawer system wasn't triggering the standard cart update events our JavaScript was listening for.
@@ -542,7 +542,7 @@ window.fetch = function() {
 ```
 ---
 
-## 📋 Debugging Strategies Used
+## Debugging Strategies Used
 
 ### 1. Liquid Syntax Debugging
 ```liquid
@@ -577,7 +577,7 @@ document.addEventListener('cart:refresh', function() {
 
 ---
 
-## 🎯 Key Lessons Learned
+## Key Lessons Learned
 
 ### 1. Shopify Architecture Constraints
 - Sections cannot be nested within sections
@@ -601,22 +601,20 @@ document.addEventListener('cart:refresh', function() {
 
 [Back to contents](#contents)
 
-# Webhook Listener for Order Creation and Cart Creation 
-
-This is a simple `Node.js + Express` server for capturing Shopify webhooks in real-time. I've demonstrated how to set up webhook listeners for `Order Creation` and `Cart Creation` events, with `ngrok` used to expose the local server and `Chalk` for clean, color-coded logging in the terminal.  
-
 ---
 
-## 🚀 Features  
+# Webhook Listener for Order Creation and Cart Creation 
+
+This is a simple `Node.js + Express` server for capturing Shopify webhooks in real-time. I've demonstrated how to set up webhook listeners for `Order Creation` and `Cart Creation` events, with `ngrok` used to expose the local server and `Chalk` for clean, color-coded logging in the terminal.
+
+## Features  
 - Webhook listener for `orders/create`  
 - Webhook listener for `carts/create`  
 - Browser check endpoints to confirm the server is live  
 - Color-coded logs with [Chalk](https://www.npmjs.com/package/chalk)  
 - Ngrok tunneling for connecting local server to Shopify  
 
----
-
-## 🛠️ Setup  
+## Setup  
 
 1. `Clone the repository`  
    ```bash
@@ -646,9 +644,7 @@ This is a simple `Node.js + Express` server for capturing Shopify webhooks in re
    - Order creation → https://abcd1234.ngrok.io/order/create
    - Cart creation → https://abcd1234.ngrok.io/cart/create
 
-  ---
-
-## 📦 Code Overview
+## Code Overview
 
 ### Order Webhook (`/order/create`)
 - Captures new order events  
@@ -660,9 +656,7 @@ This is a simple `Node.js + Express` server for capturing Shopify webhooks in re
 
 👉 Both webhooks pretty-print the `full JSON payload` for debugging.
 
----
-
-## ⚠️ Errors Encountered
+## Errors Encountered
 
 ### 1. Ngrok Tunnel Expired
 - `Cause:` Free ngrok sessions expire after some hours  
@@ -682,17 +676,16 @@ This is a simple `Node.js + Express` server for capturing Shopify webhooks in re
   ```js
   console.dir(payload, { depth: null, colors: true });
 
-  ---
-
-## 📖 Example Logs
+## Example Logs
 
 `Order Webhook`
 
 
 `Cart Webhook` 
 
-
 [Back to contents](#contents)
+
+---
 
 # Collection page with a Liquid section
 
