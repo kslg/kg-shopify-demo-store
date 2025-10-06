@@ -708,8 +708,8 @@ When I go to the URL I got  error `Cannot GET /order/create`
 
 I got this error when trying to view the payload: 
 ```
-ERR_NGROK_8012 Traffic was successfully tunneled to the ngrok agent,<br>
-but the agent failed to establish a connection to the upstream web service at http://localhost:3000.<br>
+ERR_NGROK_8012 Traffic was successfully tunneled to the ngrok agent,
+but the agent failed to establish a connection to the upstream web service at http://localhost:3000.
 The error encountered was: dial tcp [::1]:3000: connect: connection refused
 ```
 
