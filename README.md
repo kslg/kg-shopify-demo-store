@@ -904,22 +904,22 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 
 # Automation and Workflow
 
-# Shopify Flow - Automated Low Inventory Email Alert
+## Shopify Flow - Automated Low Inventory Email Alert
 
 A low-code solution for automatically notifying staff when product inventory drops below a specified threshold using Shopify Flow.
 
-## Overview
+### Overview
 
 This implementation creates an automated workflow that monitors product inventory levels and sends email notifications to staff members when stock falls below a defined threshold. Perfect for maintaining optimal inventory levels without manual monitoring.
 
-## Prerequisites
+### Prerequisites
 
 - Shopify store with admin access
 - Shopify Flow app installed
 - Staff email addresses for notifications
 - Defined inventory threshold (e.g., 5, 10, or 15 units)
 
-## Implementation Steps
+### Implementation Steps
 
 ### 1. Access Shopify Flow
 - Navigate to Shopify Admin → Apps → Shopify Flow
