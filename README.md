@@ -23,7 +23,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
    		+ [Bug 1](#bug-1)
    		+ [Bug 2](#bug-2)
    		+ [Bug 3](#bug-3)
-</br>	
+
 - [Advanced Shopify Development](#advanced-shopify-development)
 	* [Homepage Video Banner](#homepage-video-banner)
       	+ [Video Banner Implementation Guide](#video-banner-implementation-guide)
