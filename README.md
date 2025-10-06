@@ -78,8 +78,6 @@ I added add custom product attributes using Shopify metafields and dynamic sourc
 
 Metafields are Shopify's way of storing custom data that doesn't fit into standard product fields. They allow you to add additional information like sustainability details, care instructions, sizing guides, or any other custom attributes to your products.
 
-### Implementation Guide
-
 ### Step 1: Create Metafield Definition
 
 1. Navigate to `Shopify Admin` → `Settings` → `Metafields`
