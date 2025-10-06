@@ -392,8 +392,6 @@ Tested using these scenarios:
 3. Update threshold amounts and messages
 4. Test different currencies if applicable
 
----
-
 ## Issues Encountered for Dynamic Cart Message
 
 ### Issue #1: Liquid Syntax Parsing Errors
@@ -531,7 +529,6 @@ window.fetch = function() {
   });
 };
 ```
----
 
 ## Debugging Strategies Used
 
