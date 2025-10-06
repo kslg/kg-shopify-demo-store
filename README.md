@@ -28,6 +28,9 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
       	+ [Browser Compatibility](#browser-compatibility)
       	+ [Issue Encountered](#issue-encountered)
     * [Cart Page Dynamic Free Shipping Message](#cart-page-dynamic-free-shipping-message)
+      	+ [Dynamic Message Implementation Guide](#dynamic-message-implementation-guide)
+      	+ [Testing and Configuration for Dynamic Cart Message](#testing-and-configuration-for-dynamic-cart-message)
+      	+ [Issues Encountered for Dynamic Cart Message](#issues-encountered-for-dynamic-cart-message)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
 - [Headless Storefront](#headless-storefront)
   	* [Issues Encountered](#issues-encountered)
@@ -302,7 +305,7 @@ Instead of trying to dynamically concatenate the width value with 'x', I did the
 
 - I created a dynamic free shipping message on the cart page that updates dynamically based on the cart total. This includes customisation options through the theme editor and metafields integration.
 
-# Implementation Guide
+## Dynamic Message Implementation Guide
 
 ## 1: Create Metaobjects for Configuration
 
@@ -344,7 +347,7 @@ Add these fields to your metaobject:
 ### 2.1 Create the Section File
 Create a new file: `sections/free-shipping-message.liquid`
 
-## Step 3: Create the Shipping Icon
+## Step 3: Create the Shipping Icon (optional)
 
 ### 3.1 Create Icon Snippet
 Create a new file: `snippets/icon-shipping.liquid`
@@ -377,7 +380,7 @@ Add this liquid at the top of your section:
   <style>.free-shipping-message { display: none !important; }</style>
 {%- endunless -%}
 ```
-## Step 6: Testing and Configuration
+## Testing and Configuration for Dynamic Cart Message 
 
 ### 6.1 Theme Customizer Setup
 1. Go to `Online Store > Themes`
@@ -386,7 +389,7 @@ Add this liquid at the top of your section:
 4. You should see the "Free Shipping Message" section available to configure
 
 ### 6.2 Test Scenarios
-Test these scenarios:
+Tested using these scenarios:
 - Cart total below threshold (should show progress message)
 - Cart total above threshold (should show eligible message)
 - Empty cart (should show full amount needed)
@@ -400,7 +403,7 @@ Test these scenarios:
 
 ---
 
-## Critical Issues Encountered
+## Issues Encountered for Dynamic Cart Message
 
 ### Issue #1: Liquid Syntax Parsing Errors
 
