@@ -172,6 +172,9 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 
 ---
 
+# Advanced Shopify Development
+---
+
 ## Homepage Video Banner
 
 - A custom Shopify Liquid section that creates a fullwidth video banner with autoplay functionality and customizable overlay content.
@@ -896,6 +899,11 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 .weight-lighter { font-weight: lighter; }
 ```
 [Back to contents](#contents)
+
+---
+
+# Automation and Workflow
+---
 
 # Shopify Flow - Automated Low Inventory Email Alert
 
