@@ -19,7 +19,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 	* [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
 - [Advanced Shopify Development](#advanced-shopify-development)
 	* [Homepage Video Banner](#homepage-video-banner)
-      	+ [Implementation Guide](#implementation-guide)
+      	+ [Video Banner Implementation Guide](#video-banner-implementation-guide)
       	+ [Adding to Templates](#adding-to-templates)
       	+ [Video Setup](#video-setup)
       	+ [Customisation Options](#customisation-options)
@@ -189,7 +189,7 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 - 📱 `Fully responsive` design optimized for mobile devices
 - ✨ `Professional animations` with hover effects and smooth transitions
 
-### Implementation Guide
+### Video Banner Implementation Guide
 
 1. In the Shopify admin, navigate to `Online Store` > `Themes`
 2. Click `Actions` > `Edit code` on your active theme
@@ -302,7 +302,9 @@ Instead of trying to dynamically concatenate the width value with 'x', I did the
 
 # Cart Page Dynamic Free Shipping Message
 
-- This guide will help you create a dynamic free shipping message on your Shopify cart page that updates based on the cart total, with full customization options through the theme editor and metafields integration.
+- I created a dynamic free shipping message on the cart page that updates dynamically based on the cart total. This includes customisation options through the theme editor and metafields integration.
+
+# Implementation Guide
 
 ## 1: Create Metaobjects for Configuration
 
