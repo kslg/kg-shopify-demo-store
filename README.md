@@ -31,6 +31,8 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
       	+ [Dynamic Message Implementation Guide](#dynamic-message-implementation-guide)
       	+ [Testing and Configuration for Dynamic Cart Message](#testing-and-configuration-for-dynamic-cart-message)
       	+ [Issues Encountered for Dynamic Cart Message](#issues-encountered-for-dynamic-cart-message)
+      	+ [Debugging Strategies Used](#debugging-strategies-used)
+      	+ [Key Lessons Learned](#key-lessons-learned)
     * [Collection page with a Liquid section](#collection-page-with-a-liquid-section)
 - [Headless Storefront](#headless-storefront)
   	* [Issues Encountered](#issues-encountered)
