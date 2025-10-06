@@ -52,7 +52,6 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 
 - [Performance](#performance)
         + [Google Lighthouse Score](#google-lighthouse-score)
-        + [Microsoft Edge Lighthouse score](#microsoft-edge-lighthouse-score)
 
 - [Bugs Encountered](#bugs-encountered)
         + [Bug 1](#bug-1)
