@@ -46,10 +46,9 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
   	   	+ [Issue 2](#issue-2)
 	
 - [SEO Optimisation](#seo-optimisation)
-    * [Internal and External Links and SEO](#internal-and-external-links-and-seo)
-    * [Sitemap XML](#sitemap-xml)
-    * [Robots.txt](#robotstxt)
-    * [Keyword Research](#keyword-research)
+    * [Page-Level SEO Settings](#page-level-seo-settings)
+    * [Store-Wide Settings](#store-wide-settings)
+    * [Content-Based SEO](#content-based-seo)
 
 - [Performance](#performance)
         + [Google Lighthouse Score](#google-lighthouse-score)
@@ -1190,6 +1189,29 @@ The tool uses the Admin API credentials to create a Storefront API token, and di
 - The products were then loading.
 
 [Back to contents](#contents)
+
+---
+
+# SEO Optimisation
+
+Shopify has robust native SEO features built into the platform. Here's what I set up directly in my Horizon theme store without any apps.
+
+## Store-Wide Settings
+
+For Products, Collections, Pages:
+
+- Title tags and Meta Descriptions - Edit via `Search engine listing` section at the bottom of each product/collection/page
+- URL handles - Clean, keyword-rich URLs that you can edit when creating or editing items
+
+## Content-Based SEO
+
+Homepage & Store Settings:
+
+- Homepage title and meta description: Sales Channels > Online Store > Preferences > Social sharing image and SEO
+
+[Back to contents](#contents)
+
+---
 
 # Credits and Borrowed Resources
 
