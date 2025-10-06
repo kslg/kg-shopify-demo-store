@@ -17,6 +17,12 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 - [Automation and Workflow](#automation-and-workflow)
 	* [Shopify Flow - Automated Low Inventory Email Alert](#shopify-flow---automated-low-inventory-email-alert)
 	* [Webhook Listener for Order Creation and Cart Creation](#webhook-listener-for-order-creation-and-cart-creation)
+		+[CLI Setup of the Webhook](#cli-setup-of-the-webhook)
+   		+[Code Overview for the Webhook](#code-overview-for-the-webhook)
+   		+[Issues Encountered with the Webhooks](#issues-encountered-with-the-webhooks)
+   		+[Bug 1](#bug-1)
+   		+[Bug 2](#bug-2)
+   		+[Bug 3](#bug-3)	
 - [Advanced Shopify Development](#advanced-shopify-development)
 	* [Homepage Video Banner](#homepage-video-banner)
       	+ [Video Banner Implementation Guide](#video-banner-implementation-guide)
@@ -577,8 +583,6 @@ document.addEventListener('cart:refresh', function() {
 });
 ```
 
----
-
 ## Key Lessons Learned
 
 ### 1. Shopify Architecture Constraints
@@ -616,7 +620,7 @@ This is a simple `Node.js + Express` server for capturing Shopify webhooks in re
 - Color-coded logs with [Chalk](https://www.npmjs.com/package/chalk)  
 - Ngrok tunneling for connecting local server to Shopify  
 
-## Setup  
+## CLI Setup of the Webhook
 
 1. `Clone the repository`  
    ```bash
@@ -646,7 +650,7 @@ This is a simple `Node.js + Express` server for capturing Shopify webhooks in re
    - Order creation → https://abcd1234.ngrok.io/order/create
    - Cart creation → https://abcd1234.ngrok.io/cart/create
 
-## Code Overview
+## Code Overview for the Webhook 
 
 ### Order Webhook (`/order/create`)
 - Captures new order events  
@@ -658,31 +662,63 @@ This is a simple `Node.js + Express` server for capturing Shopify webhooks in re
 
 👉 Both webhooks pretty-print the `full JSON payload` for debugging.
 
-## Errors Encountered
+## Issues Encountered with the Webhooks
 
-### 1. Ngrok Tunnel Expired
-- `Cause:` Free ngrok sessions expire after some hours  
-- `Fix:` Restart ngrok and update the webhook URL in Shopify  
+### Bug 1
 
-### 2. Shopify Webhook Failing with 401 or Timeout
-- `Cause:` Shopify couldn’t reach your local server  
-- `Fix:` Make sure ngrok is running and the server is active  
+This error returned when I 'ngrok http 300' 
 
-### 3. Empty Payloads
-- `Cause:` Request body was not parsed  
-- `Fix:` Added `app.use(express.json())` middleware in Express  
+```
+ERROR: authentication failed: Usage of ngrok requires a verified account and authtoken. 
+ERROR: Sign up for an account: https://dashboard.ngrok.com/signup
+ERROR: Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken
+ERROR: ERR_NGROK_4018
+ERROR: https://ngrok.com/docs/errors/err_ngrok_4018
+```
 
-### 4. Confusing Logs
-- `Cause:` Raw JSON payloads were hard to read  
-- `Fix:` Added Chalk for colored logs and used:
-  ```js
-  console.dir(payload, { depth: null, colors: true });
+ngrok needed me to sign up for a (free) account and link it with an authtoken before you can start tunnels.
+
+- Add the authtoken to your local ngrok
+```
+ngrok config add-authtoken YOUR_TOKEN_HERE
+```
+
+- It’ll save the token to `~/.ngrok2/ngrok.yml` or `~/.config/ngrok/ngrok.yml` depending on version.
+
+- Now you can run `ngrok http 3000`
+
+You should see something like:
+```
+Forwarding    https://a1b2c3d4.ngrok.io -> http://localhost:3000
+```
+
+### Bug 2
+
+When I go to the URL I got  error `Cannot GET /order/create`
+
+-That’s actually expected and it’s a good sign.
+
+- You set up your Node.js server to handle POST requests (Shopify sends POST requests for webhooks).
+
+- When you go to the URL in a browser, your browser is sending a GET request, but your server has no app.get('/order/create') route, so Express replies with “Cannot GET”.
+
+- It means your server is running fine — it’s just that the /order/create route only responds to POST requests from Shopify.
+
+### Bug 3
+
+I got this error when trying to view the payload: 
+```
+ERR_NGROK_8012 Traffic was successfully tunneled to the ngrok agent,<br>
+but the agent failed to establish a connection to the upstream web service at http://localhost:3000.<br>
+The error encountered was: dial tcp [::1]:3000: connect: connection refused
+```
+
+Ah, that error means ngrok is working, but it can’t reach your Node.js server on `localhost:3000`.
+So Shopify (or your browser) hits the ngrok URL, ngrok tries to forward the request to your computer, but there’s nothing listening at port `3000` > so it says connection refused.
 
 ## Example Logs
 
 `Order Webhook`
-
-
 `Cart Webhook` 
 
 [Back to contents](#contents)
