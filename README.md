@@ -52,18 +52,7 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
 
 - [Performance](#performance)
 	* [Google Lighthouse Score](#google-lighthouse-score)
-
-- [Bugs Encountered](#bugs-encountered)
-        + [Bug 1](#bug-1)
-        + [Bug 2](#bug-2)
-        + [Bug 3](#bug-3)
-        + [Bug 4](#bug-4)
-
-- [Technologies used](#technologies-used)
-    * [Languages](#languages)
-    * [Frameworks and libraries](#frameworks-and-libraries)
-    * [Databases](#databases)
-    * [Other tools](#other-tools)
+ 
 - [Credits and Borrowed Resources](#credits-and-borrowed-resources)
     * [GraphQL Admin API reference](#graphql-admin-api-reference)
     * [Shopify Development Fundamentals](#shopify-development-fundamentals)
@@ -1211,12 +1200,29 @@ Homepage & Store Settings:
 
 ---
 
+# Performance
+
+## Google Lighthouse Score
+
+![image](/documentation/screenshots/google-lighthouse-score.png)
+
+[Back to contents](#contents)
+
+---
+
 # Credits and Borrowed Resources
 
 - [GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql "This page will help you get up and running with Shopify’s GraphQL API")
 - [Shopify Development Fundamentals](https://www.shopifyacademy.com/path/shopify-development-fundamentals "Learn Shopify's framework and the necessary steps to start developing on Shopify’s platform.")
 - [Tracking and adjusting inventory](https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory "Keeping track of your inventory is essential for running your business efficiently")
-- https://help.shopify.com/en/manual/discounts/discount-types/buy-x-get-y#automatic-buy-x-get-y
-
+- [Discount Types](https://help.shopify.com/en/manual/discounts/discount-types/buy-x-get-y#automatic-buy-x-get-y)
+- [Vibe Coding Using Chat GPT](https://chatgpt.com/)
+- [Vibe Coling Using Claude.ai](https://claude.ai/new)
+- [Markdown Guide](https://www.markdownguide.org/)
+- [Royalty Free Images and Videos](https://www.pexels.com/)
 
 [Back to contents](#contents)
+
+---
+
+<h2 align="center">End of Readme</h2>
