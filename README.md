@@ -1213,7 +1213,7 @@ Homepage & Store Settings:
 - [Tracking and adjusting inventory](https://help.shopify.com/en/manual/products/inventory/managing-inventory-quantities/track_inventory#view-your-product-inventory "Keeping track of your inventory is essential for running your business efficiently")
 - [Discount Types](https://help.shopify.com/en/manual/discounts/discount-types/buy-x-get-y#automatic-buy-x-get-y)
 - [Vibe Coding Using Chat GPT](https://chatgpt.com/)
-- [Vibe Coling Using Claude.ai](https://claude.ai/new)
+- [Vibe Coding Using Claude.ai](https://claude.ai/new)
 - [Markdown Guide](https://www.markdownguide.org/)
 - [Royalty Free Images and Videos](https://www.pexels.com/)
 
