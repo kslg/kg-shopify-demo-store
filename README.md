@@ -50,12 +50,9 @@ I have demonstrated how to apply these features using "out-the-box" configuratio
     * [Store-Wide Settings](#store-wide-settings)
 
 - [Performance](#performance)
-	* [Google Lighthouse Score](#google-lighthouse-score)
+  * [Google Lighthouse Score](#google-lighthouse-score)
  
 - [Credits and Borrowed Resources](#credits-and-borrowed-resources)
-    * [GraphQL Admin API reference](#graphql-admin-api-reference)
-    * [Shopify Development Fundamentals](#shopify-development-fundamentals)
-    * [Tracking and adjusting inventory](#tracking-and-adjusting-inventory)
 
 --- 
 
