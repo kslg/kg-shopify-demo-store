@@ -165,6 +165,258 @@ This guide shows you how to implement automatic cart discounts ("Buy 2, save 10%
 
 ---
 
+
+
+# Automation and Workflow
+
+## Shopify Flow - Automated Low Inventory Email Alert
+
+A low-code solution for automatically notifying staff when product inventory drops below a specified threshold using Shopify Flow.
+
+### Overview
+
+This implementation creates an automated workflow that monitors product inventory levels and sends email notifications to staff members when stock falls below a defined threshold. Perfect for maintaining optimal inventory levels without manual monitoring.
+
+### Prerequisites
+
+- Shopify store with admin access
+- Shopify Flow app installed
+- Staff email addresses for notifications
+- Defined inventory threshold (e.g., 5, 10, or 15 units)
+
+### Implementation Steps
+
+### 1. Access Shopify Flow
+- Navigate to Shopify Admin → Apps → Shopify Flow
+- Click "Create workflow"
+
+### 2. Configure Trigger
+- Select `"Product inventory changed"` as the trigger
+- This monitors inventory levels across all products in real-time
+
+### 3. Set Condition
+- Add condition: `Product inventory quantity` `is less than or equal to` `[threshold number]`
+- Replace `[threshold number]` with your desired minimum stock level
+- Optional: Add additional conditions for specific products, variants, or locations
+
+### 4. Configure Email Action
+- Choose `"Send email"` as the action
+- Configure email settings:
+  - `To`: Staff email addresses (comma-separated for multiple recipients)
+  - `Subject`: `Low Inventory Alert - {{product.title}}`
+  - `Body`: Use the template below
+
+### 5. Email Template
+
+```
+Subject: Low Inventory Alert - {{product.title}}
+
+Hi Team,
+
+The inventory for {{product.title}} has dropped to {{product.totalInventory}} units.
+
+Product Details: <br>
+- SKU: {{product.handle}} <br> 
+- Current Stock: {{product.totalInventory}} <br>
+- Product ID: {{product.id}} <br>
+- Storefront Link: https://krish-demostore.myshopify.com/products/{{product.handle}} <br>
+
+Please restock when convenient.
+
+From UE Team
+```
+
+### 6. Test and Activate
+- Use Shopify Flow's built-in test functionality
+- Verify email delivery and content
+- Activate workflow once testing is complete
+
+## Available Variables
+
+### Working Variables for Products Without Variants
+- `{{product.title}}` - Product name
+- `{{product.totalInventory}}` - Current stock level
+- `{{product.id}}` - Product ID (GraphQL format)
+- `{{product.handle}}` - Product URL handle
+
+## Known Limitations and Workarounds
+
+### 1. GraphQL ID Format Issue
+`Problem`: `{{product.id}}` returns GraphQL format (`gid://shopify/Product/123456`) instead of numeric ID.
+
+`Impact`: Cannot create clean admin product URLs like `https://admin.shopify.com/store/name/products/123456`
+
+`Workaround`: Use storefront URLs instead: `https://your-store.myshopify.com/products/{{product.handle}}`
+
+### 2. SKU Limitations
+`Problem`: SKU variables are not accessible for products without variants.
+
+`Workaround`: Use Product ID and Handle for product identification instead.
+
+### 3. Admin URL Generation
+`Problem`: Cannot generate direct admin product links due to GraphQL ID format.
+
+`Workaround`: Include Product ID in email for manual admin search, or use storefront links.
+
+## Best Practices
+
+### Multiple Alert Levels
+Consider creating separate workflows for different urgency levels:
+- Critical: ≤ 2 units (immediate action required)
+- Low: ≤ 10 units (reorder soon)
+- Warning: ≤ 25 units (plan reorder)
+
+### Business Hours Filtering
+Add time-based conditions to avoid after-hours notifications:
+- Only send emails during business hours
+- Different alert thresholds for weekends
+
+### Product-Specific Thresholds
+Create targeted workflows for:
+- High-value products (lower thresholds)
+- Seasonal items (adjusted thresholds)
+- Fast-moving inventory (higher thresholds)
+
+## Troubleshooting
+
+### Common Issues
+1. `Variable errors`: Ensure all variables are from the approved list above
+2. `No emails received`: Check spam folders and verify email addresses
+3. `Too many notifications`: Consider implementing delay conditions or higher thresholds
+4. `Missing products`: Verify inventory tracking is enabled for products
+
+### Testing
+- Used Shopify Flow's test feature before activation
+- Test with a single email address initially
+
+
+## Technical Notes
+
+- `Theme Independence`: This workflow functions regardless of store theme (tested with Horizon theme)
+- `Real-time Monitoring`: Triggers immediately when inventory changes
+- `Scalability`: Handles multiple products and locations
+- `No Coding Required`: Pure low-code/no-code solution
+
+[Back to contents](#contents)
+
+---
+
+# Webhook Listener for Order Creation and Cart Creation 
+
+This is a simple `Node.js + Express` server for capturing Shopify webhooks in real-time. I've demonstrated how to set up webhook listeners for `Order Creation` and `Cart Creation` events, with `ngrok` used to expose the local server and `Chalk` for clean, color-coded logging in the terminal.
+
+## Features  
+- Webhook listener for `orders/create`  
+- Webhook listener for `carts/create`  
+- Browser check endpoints to confirm the server is live  
+- Color-coded logs with [Chalk](https://www.npmjs.com/package/chalk)  
+- Ngrok tunneling for connecting local server to Shopify  
+
+## CLI Setup of the Webhook
+
+1. `Clone the repository`  
+   ```bash
+   git clone <your-repo-url>
+   cd <project-folder>
+
+2. `Install dependencies`
+   ```bash
+   npm install express chalk
+
+3. `Run Server`
+   ```bash
+   node server.js
+
+   By default, the app runs on http://localhost:3000 
+
+4. `Expose the server with ngrok`
+   ```bash
+   ngrok http 3000
+
+   Copy the generated HTTPS forwarding URL
+
+5. `Register webhooks in Shopify Admin`
+   - Go to Shopify Admin > Settings > Notifications > Webhooks
+
+   Add a webhook for:
+   - Order creation → https://abcd1234.ngrok.io/order/create
+   - Cart creation → https://abcd1234.ngrok.io/cart/create
+
+## Code Overview for the Webhook 
+
+### Order Webhook (`/order/create`)
+- Captures new order events  
+- Logs `Order ID`, `Customer Email`, and `Total Price`
+
+### Cart Webhook (`/cart/create`)
+- Captures new cart creation events  
+- Logs `Cart Token`, `Customer ID`, and `Total Price`
+
+👉 Both webhooks pretty-print the `full JSON payload` for debugging.
+
+## Issues Encountered with the Webhooks
+
+### Bug 1
+
+This error returned when I 'ngrok http 300' 
+
+```
+ERROR: authentication failed: Usage of ngrok requires a verified account and authtoken. 
+ERROR: Sign up for an account: https://dashboard.ngrok.com/signup
+ERROR: Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken
+ERROR: ERR_NGROK_4018
+ERROR: https://ngrok.com/docs/errors/err_ngrok_4018
+```
+
+ngrok needed me to sign up for a (free) account and link it with an authtoken before you can start tunnels.
+
+- Add the authtoken to your local ngrok
+```
+ngrok config add-authtoken YOUR_TOKEN_HERE
+```
+
+- It’ll save the token to `~/.ngrok2/ngrok.yml` or `~/.config/ngrok/ngrok.yml` depending on version.
+
+- Now you can run `ngrok http 3000`
+
+You should see something like:
+```
+Forwarding    https://a1b2c3d4.ngrok.io -> http://localhost:3000
+```
+
+### Bug 2
+
+When I go to the URL I got  error `Cannot GET /order/create`
+
+-That’s actually expected and it’s a good sign.
+
+- You set up your Node.js server to handle POST requests (Shopify sends POST requests for webhooks).
+
+- When you go to the URL in a browser, your browser is sending a GET request, but your server has no app.get('/order/create') route, so Express replies with “Cannot GET”.
+
+- It means your server is running fine — it’s just that the /order/create route only responds to POST requests from Shopify.
+
+### Bug 3
+
+I got this error when trying to view the payload: 
+```
+ERR_NGROK_8012 Traffic was successfully tunneled to the ngrok agent,
+but the agent failed to establish a connection to the upstream web service at http://localhost:3000.
+The error encountered was: dial tcp [::1]:3000: connect: connection refused
+```
+
+Ah, that error means ngrok is working, but it can’t reach your Node.js server on `localhost:3000`.
+So Shopify (or your browser) hits the ngrok URL, ngrok tries to forward the request to your computer, but there’s nothing listening at port `3000` > so it says connection refused.
+
+## Example Logs
+
+`Order Webhook`
+`Cart Webhook` 
+
+[Back to contents](#contents)
+
+---
+
 # Advanced Shopify Development
 
 ## Homepage Video Banner
@@ -271,7 +523,7 @@ The section automatically adapts to different screen sizes:
 | Mobile Browsers | ✅ Full | Uses `playsinline` attribute |
 | Older Browsers | ⚠️ Partial | Graceful fallback to poster image |
 
-# Issue Encountered
+## Issue Encountered
 
 I copied the code into the blank liquid file and then clicked save. However, it did not save and i got this error message.
 
@@ -796,256 +1048,6 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 .weight-bold { font-weight: bold; }
 .weight-lighter { font-weight: lighter; }
 ```
-[Back to contents](#contents)
-
----
-
-# Automation and Workflow
-
-## Shopify Flow - Automated Low Inventory Email Alert
-
-A low-code solution for automatically notifying staff when product inventory drops below a specified threshold using Shopify Flow.
-
-### Overview
-
-This implementation creates an automated workflow that monitors product inventory levels and sends email notifications to staff members when stock falls below a defined threshold. Perfect for maintaining optimal inventory levels without manual monitoring.
-
-### Prerequisites
-
-- Shopify store with admin access
-- Shopify Flow app installed
-- Staff email addresses for notifications
-- Defined inventory threshold (e.g., 5, 10, or 15 units)
-
-### Implementation Steps
-
-### 1. Access Shopify Flow
-- Navigate to Shopify Admin → Apps → Shopify Flow
-- Click "Create workflow"
-
-### 2. Configure Trigger
-- Select `"Product inventory changed"` as the trigger
-- This monitors inventory levels across all products in real-time
-
-### 3. Set Condition
-- Add condition: `Product inventory quantity` `is less than or equal to` `[threshold number]`
-- Replace `[threshold number]` with your desired minimum stock level
-- Optional: Add additional conditions for specific products, variants, or locations
-
-### 4. Configure Email Action
-- Choose `"Send email"` as the action
-- Configure email settings:
-  - `To`: Staff email addresses (comma-separated for multiple recipients)
-  - `Subject`: `Low Inventory Alert - {{product.title}}`
-  - `Body`: Use the template below
-
-### 5. Email Template
-
-```
-Subject: Low Inventory Alert - {{product.title}}
-
-Hi Team,
-
-The inventory for {{product.title}} has dropped to {{product.totalInventory}} units.
-
-Product Details: <br>
-- SKU: {{product.handle}} <br> 
-- Current Stock: {{product.totalInventory}} <br>
-- Product ID: {{product.id}} <br>
-- Storefront Link: https://krish-demostore.myshopify.com/products/{{product.handle}} <br>
-
-Please restock when convenient.
-
-From UE Team
-```
-
-### 6. Test and Activate
-- Use Shopify Flow's built-in test functionality
-- Verify email delivery and content
-- Activate workflow once testing is complete
-
-## Available Variables
-
-### Working Variables for Products Without Variants
-- `{{product.title}}` - Product name
-- `{{product.totalInventory}}` - Current stock level
-- `{{product.id}}` - Product ID (GraphQL format)
-- `{{product.handle}}` - Product URL handle
-
-## Known Limitations and Workarounds
-
-### 1. GraphQL ID Format Issue
-`Problem`: `{{product.id}}` returns GraphQL format (`gid://shopify/Product/123456`) instead of numeric ID.
-
-`Impact`: Cannot create clean admin product URLs like `https://admin.shopify.com/store/name/products/123456`
-
-`Workaround`: Use storefront URLs instead: `https://your-store.myshopify.com/products/{{product.handle}}`
-
-### 2. SKU Limitations
-`Problem`: SKU variables are not accessible for products without variants.
-
-`Workaround`: Use Product ID and Handle for product identification instead.
-
-### 3. Admin URL Generation
-`Problem`: Cannot generate direct admin product links due to GraphQL ID format.
-
-`Workaround`: Include Product ID in email for manual admin search, or use storefront links.
-
-## Best Practices
-
-### Multiple Alert Levels
-Consider creating separate workflows for different urgency levels:
-- Critical: ≤ 2 units (immediate action required)
-- Low: ≤ 10 units (reorder soon)
-- Warning: ≤ 25 units (plan reorder)
-
-### Business Hours Filtering
-Add time-based conditions to avoid after-hours notifications:
-- Only send emails during business hours
-- Different alert thresholds for weekends
-
-### Product-Specific Thresholds
-Create targeted workflows for:
-- High-value products (lower thresholds)
-- Seasonal items (adjusted thresholds)
-- Fast-moving inventory (higher thresholds)
-
-## Troubleshooting
-
-### Common Issues
-1. `Variable errors`: Ensure all variables are from the approved list above
-2. `No emails received`: Check spam folders and verify email addresses
-3. `Too many notifications`: Consider implementing delay conditions or higher thresholds
-4. `Missing products`: Verify inventory tracking is enabled for products
-
-### Testing
-- Used Shopify Flow's test feature before activation
-- Test with a single email address initially
-
-
-## Technical Notes
-
-- `Theme Independence`: This workflow functions regardless of store theme (tested with Horizon theme)
-- `Real-time Monitoring`: Triggers immediately when inventory changes
-- `Scalability`: Handles multiple products and locations
-- `No Coding Required`: Pure low-code/no-code solution
-
-[Back to contents](#contents)
-
----
-
-# Webhook Listener for Order Creation and Cart Creation 
-
-This is a simple `Node.js + Express` server for capturing Shopify webhooks in real-time. I've demonstrated how to set up webhook listeners for `Order Creation` and `Cart Creation` events, with `ngrok` used to expose the local server and `Chalk` for clean, color-coded logging in the terminal.
-
-## Features  
-- Webhook listener for `orders/create`  
-- Webhook listener for `carts/create`  
-- Browser check endpoints to confirm the server is live  
-- Color-coded logs with [Chalk](https://www.npmjs.com/package/chalk)  
-- Ngrok tunneling for connecting local server to Shopify  
-
-## CLI Setup of the Webhook
-
-1. `Clone the repository`  
-   ```bash
-   git clone <your-repo-url>
-   cd <project-folder>
-
-2. `Install dependencies`
-   ```bash
-   npm install express chalk
-
-3. `Run Server`
-   ```bash
-   node server.js
-
-   By default, the app runs on http://localhost:3000 
-
-4. `Expose the server with ngrok`
-   ```bash
-   ngrok http 3000
-
-   Copy the generated HTTPS forwarding URL
-
-5. `Register webhooks in Shopify Admin`
-   - Go to Shopify Admin > Settings > Notifications > Webhooks
-
-   Add a webhook for:
-   - Order creation → https://abcd1234.ngrok.io/order/create
-   - Cart creation → https://abcd1234.ngrok.io/cart/create
-
-## Code Overview for the Webhook 
-
-### Order Webhook (`/order/create`)
-- Captures new order events  
-- Logs `Order ID`, `Customer Email`, and `Total Price`
-
-### Cart Webhook (`/cart/create`)
-- Captures new cart creation events  
-- Logs `Cart Token`, `Customer ID`, and `Total Price`
-
-👉 Both webhooks pretty-print the `full JSON payload` for debugging.
-
-## Issues Encountered with the Webhooks
-
-### Bug 1
-
-This error returned when I 'ngrok http 300' 
-
-```
-ERROR: authentication failed: Usage of ngrok requires a verified account and authtoken. 
-ERROR: Sign up for an account: https://dashboard.ngrok.com/signup
-ERROR: Install your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken
-ERROR: ERR_NGROK_4018
-ERROR: https://ngrok.com/docs/errors/err_ngrok_4018
-```
-
-ngrok needed me to sign up for a (free) account and link it with an authtoken before you can start tunnels.
-
-- Add the authtoken to your local ngrok
-```
-ngrok config add-authtoken YOUR_TOKEN_HERE
-```
-
-- It’ll save the token to `~/.ngrok2/ngrok.yml` or `~/.config/ngrok/ngrok.yml` depending on version.
-
-- Now you can run `ngrok http 3000`
-
-You should see something like:
-```
-Forwarding    https://a1b2c3d4.ngrok.io -> http://localhost:3000
-```
-
-### Bug 2
-
-When I go to the URL I got  error `Cannot GET /order/create`
-
--That’s actually expected and it’s a good sign.
-
-- You set up your Node.js server to handle POST requests (Shopify sends POST requests for webhooks).
-
-- When you go to the URL in a browser, your browser is sending a GET request, but your server has no app.get('/order/create') route, so Express replies with “Cannot GET”.
-
-- It means your server is running fine — it’s just that the /order/create route only responds to POST requests from Shopify.
-
-### Bug 3
-
-I got this error when trying to view the payload: 
-```
-ERR_NGROK_8012 Traffic was successfully tunneled to the ngrok agent,
-but the agent failed to establish a connection to the upstream web service at http://localhost:3000.
-The error encountered was: dial tcp [::1]:3000: connect: connection refused
-```
-
-Ah, that error means ngrok is working, but it can’t reach your Node.js server on `localhost:3000`.
-So Shopify (or your browser) hits the ngrok URL, ngrok tries to forward the request to your computer, but there’s nothing listening at port `3000` > so it says connection refused.
-
-## Example Logs
-
-`Order Webhook`
-`Cart Webhook` 
-
 [Back to contents](#contents)
 
 ---
