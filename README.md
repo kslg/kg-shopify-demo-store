@@ -1087,6 +1087,8 @@ I created a simeple headless storefront in HTML:
 
 ![image](/documentation/screenshots/headless_2.png width="1024" height="940")
 
+<img src="https://github.com/kslg/kg-shopify-demo-store/blob/main/documentation/screenshots/headless_2.png" width="1024" height="940">
+
 ## Created the Custom App
 
 - Click "Create an app" button
