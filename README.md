@@ -1131,7 +1131,7 @@ When I clicked "Install App", I got redirected to the Install App page and saw t
 
 I loaded the frontend of the store and I saw the error message rendered rendered. This error shows if the products fail to load.
 
-![image](/documentation/screenshots/headless_5.png)
+<img src="https://github.com/kslg/kg-shopify-demo-store/blob/main/documentation/screenshots/headless_5.png" width="800" height="734">
 
 I then realised I may not have installed the app to the store. I clicked 'Install App' and was direct this this error message
 
