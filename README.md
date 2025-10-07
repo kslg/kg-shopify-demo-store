@@ -1,4 +1,4 @@
-<h1 align="center">Urban Ember - Shopify Dev Store by Krishan.</h1>
+<h1 align="center">Urban Ember - Demo Shopify Dev Store</h1>
 
 ![image](documentation/screenshots/i_am_responsive.png)
 
