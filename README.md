@@ -4,6 +4,7 @@
 
 [🔗 View the live project here.](https://krish-demostore.myshopify.com/)
 
+**Store Password:** `krisadmin1`
 
 This is the documentation for my demo Shopify store – an urban clothing brand using the Horizon theme and enhanced with custom features to improve user experience and merchant KPIs.
 I have demonstrated how to apply these features using "out-the-box" configuration as well as code development. I hope you enjoy it.
