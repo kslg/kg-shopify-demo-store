@@ -1085,7 +1085,7 @@ I created a simeple headless storefront in HTML:
 - Demonstrates the "headless" concept clearly
 - Can be hosted anywhere (Netlify, Vercel, GitHub Pages, or even locally).
 
-![image](/documentation/screenshots/headless_2.png =1024x940)
+![image](/documentation/screenshots/headless_2.png width="1024" height="940")
 
 ## Created the Custom App
 
