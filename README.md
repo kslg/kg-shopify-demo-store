@@ -1117,7 +1117,7 @@ unauthenticated_read_checkouts
 
 When I clicked "Install App", I got redirected to the Install App page and saw this error and asking me to open access for the app:
 
-![image](/documentation/screenshots/headless_4.png)
+<img src="https://github.com/kslg/kg-shopify-demo-store/blob/main/documentation/screenshots/headless_4.png" width="800" height="646">
 
 ### Fix
 
