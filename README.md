@@ -1056,6 +1056,8 @@ I wanted add controls over the text alignment and font weight from the Theme Edi
 
 This is a headless commerce demo alongside my existing store. I decided to create a separate sales channel with a dedicated page. I can use this for flash sales or exclusive offers for VIP customer segments, for example.
 
+[🔗 View the headless storefront here.](https://krish-demostore.myshopify.com/pages/headless-storefront-demo)
+
 What It Does:
 - ✅ Fetches real products from Shopify via GraphQL Storefront API<br>
 - ✅ Displays products in a modern grid layout<br>
