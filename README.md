@@ -547,7 +547,12 @@ Instead of trying to dynamically concatenate the width value with 'x', I did the
 
 # Cart Page Dynamic Free Shipping Message
 
-- I created a dynamic free shipping message on the cart page that updates dynamically based on the cart total. This includes customisation options through the theme editor and metafields integration.
+- I created a dynamic free shipping message on the cart page that updates dynamically based on the cart total.
+- This includes customisation options through the theme editor and metafields integration.
+
+![image](/documentation/screenshots/dynamic-free-shipping-1.png)
+
+![image](/documentation/screenshots/dynamic-free-shipping-2.png)
 
 ## Dynamic Message Implementation Guide
 
