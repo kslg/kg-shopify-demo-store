@@ -550,9 +550,9 @@ Instead of trying to dynamically concatenate the width value with 'x', I did the
 - I created a dynamic free shipping message on the cart page that updates dynamically based on the cart total.
 - This includes customisation options through the theme editor and metafields integration.
 
-![image](/documentation/screenshots/dynamic-free-shipping-1.png)
+<img src="https://github.com/kslg/kg-shopify-demo-store/blob/main/documentation/screenshots/dynamic-free-shipping-1.png" width="800" height="516">
 
-![image](/documentation/screenshots/dynamic-free-shipping-2.png)
+<img src="https://github.com/kslg/kg-shopify-demo-store/blob/main/documentation/screenshots/dynamic-free-shipping-2.png" width="800" height="497">
 
 ## Dynamic Message Implementation Guide
 
